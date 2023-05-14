@@ -1,9 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>res/logo.png</file>
-        <file>qml/pages/MainPage.qml</file>
-        <file>qml/controls/ControlMenuButton.qml</file>
-        <file>qml/controls/ControlCategory.qml</file>
-        <file>qml/controls/ModelControlTicket.qml</file>
+        <file>res/avatar.png</file>
+        <file>res/edit.png</file>
+        <file>res/plus_big.png</file>
+        <file>qml/controls/ControlEditButton.qml</file>
+        <file>qml/controls/ControlMoreButton.qml</file>
+        <file>res/more.png</file>
+        <file>qml/controls/ControlTimer.qml</file>
     </qresource>
 </RCC>

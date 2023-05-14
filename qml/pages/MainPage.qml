@@ -46,6 +46,13 @@ Item
     }
     StackLayout
     {
+        anchors.top: menuBar.bottom
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        SubProjectPage
+        {
 
+        }
     }
 }

@@ -6,8 +6,8 @@ import './pages'
 
 Window
 {
-    width: 800
-    height: 600
+    width: 1200
+    height: 800
     visible: true
     title: qsTr("V-JBAN")
     StackLayout

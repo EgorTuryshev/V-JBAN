@@ -46,11 +46,15 @@ Item
     }
     StackLayout
     {
+        anchors.leftMargin: 200
+        anchors.rightMargin: 200
+        anchors.topMargin: 35
+        anchors.bottomMargin: 35
         anchors.top: menuBar.bottom
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        SubProjectPage
+        SubTicketsPage
         {
 
         }

@@ -22,5 +22,8 @@ Item
         font.family: "Segoe UI"
         font.pixelSize: 14
         text: "00:00:00"
+        font.bold: true
+        verticalAlignment: Qt.AlignVCenter
+        anchors.fill: parent
     }
 }

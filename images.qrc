@@ -8,5 +8,7 @@
         <file>qml/controls/ControlMoreButton.qml</file>
         <file>res/more.png</file>
         <file>qml/controls/ControlTimer.qml</file>
+        <file>qml/pages/SubTicketsPage.qml</file>
+        <file>qml/controls/ModelControlTicketLarge.qml</file>
     </qresource>
 </RCC>

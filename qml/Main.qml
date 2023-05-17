@@ -15,13 +15,20 @@ Window
         id: router
         anchors.fill: parent
         currentIndex: 0
-        MainPage
-        {
+        //MainPage
+        //{
+        //
+        //}
 
-        }
-
-        LoginPage
-        {
+        //LoginPage
+        //{
+        //
+        //}
+        //RegisterPage
+        //{
+        //
+        //}
+        ForgotPasswordPage{
 
         }
     }

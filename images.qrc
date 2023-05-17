@@ -10,5 +10,8 @@
         <file>qml/controls/ControlTimer.qml</file>
         <file>qml/pages/SubTicketsPage.qml</file>
         <file>qml/controls/ModelControlTicketLarge.qml</file>
+        <file>qml/controls/ControlSearchField.qml</file>
+        <file>res/search.svg</file>
+        <file>qml/controls/ControlComboBox.qml</file>
     </qresource>
 </RCC>

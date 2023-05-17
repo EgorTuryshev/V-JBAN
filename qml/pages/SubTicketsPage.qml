@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import QtQuick.Layouts 1.15
 
 import '../controls'
 
@@ -6,10 +7,47 @@ Item
 {
     id: root
     anchors.fill: parent
-    clip: true
+
+    RowLayout
+    {
+        id: topControls
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        ControlSearchField
+        {
+            Layout.leftMargin: 5
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: parent.width * 0.6
+        }
+        Item
+        {
+            Layout.fillWidth: true
+        }
+        Text
+        {
+            id: sortLabel
+            text: qsTr("Отсортировать по: ")
+            font.pixelSize: 16
+            font.family: "Segoe UI"
+            color: "#696969"
+        }
+        ControlComboBox
+        {
+            Layout.preferredWidth: sortLabel.width + 20
+            Layout.preferredHeight: 40
+            model: ["Проектам", "Названию"]
+        }
+    }
+
     ListView
     {
-        anchors.fill: parent
+        clip: true
+        anchors.top: topControls.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.topMargin: 35
         spacing: 30
         model: ListModel
         {

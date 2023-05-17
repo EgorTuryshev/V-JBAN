@@ -45,6 +45,8 @@ Item
                     font.family: "Segoe UI"
                     color: "#696969"
                     font.bold: true
+                    Layout.maximumWidth: 300
+                    elide: Qt.ElideRight
                 }
                 ControlTimer
                 {
@@ -60,12 +62,12 @@ Item
                 {
                     id: projectName
                     text: "Проект #1"
-                    Layout.maximumWidth: 300
                     font.pixelSize: 16
                     font.family: "Segoe UI"
                     color: "#696969"
                     font.bold: true
                     Layout.rightMargin: 15
+                    Layout.maximumWidth: 300
                     elide: Text.ElideRight
                 }
                 ControlMoreButton

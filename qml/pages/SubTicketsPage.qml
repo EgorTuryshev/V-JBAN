@@ -19,10 +19,8 @@ Item
             Layout.leftMargin: 5
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width * 0.6
-        }
-        Item
-        {
             Layout.fillWidth: true
+            Layout.rightMargin: 45
         }
         Text
         {
@@ -47,7 +45,7 @@ Item
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.topMargin: 35
+        anchors.topMargin: 30
         spacing: 30
         model: ListModel
         {

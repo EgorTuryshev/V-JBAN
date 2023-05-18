@@ -7,8 +7,9 @@ Item
     id: root
 
     property alias header: header.text
-    property alias projectName: projectName.text
     property alias description: desc.text
+    property int numOfDoneTickets: 3
+    property int numOfTickets: 10
 
     Rectangle
     {
@@ -34,6 +35,7 @@ Item
             anchors.fill: parent
             anchors.leftMargin: 20
             anchors.rightMargin: 20
+            anchors.topMargin: 10
             RowLayout
             {
                 Layout.alignment: Qt.AlignTop
@@ -41,34 +43,22 @@ Item
                 Text
                 {
                     id: header
-                    text: "Задача #1"
+                    text: "Проект #1"
                     font.pixelSize: 20
                     font.family: "Segoe UI"
                     color: "#696969"
                     font.bold: true
                     elide: Qt.ElideRight
-                    Layout.maximumWidth: parent.width * 0.4
                 }
-                ControlTimer
+                ControlEditButton
                 {
-                    Layout.leftMargin: 15
-                    Layout.fillHeight: true
+                    Layout.preferredWidth: 15
+                    Layout.preferredHeight: 15
                 }
                 Item
                 {
                     Layout.fillWidth: true
                     Layout.minimumWidth: 100
-                }
-                Text
-                {
-                    id: projectName
-                    text: "Проект #1"
-                    font.pixelSize: 16
-                    font.family: "Segoe UI"
-                    color: "#696969"
-                    font.bold: true
-                    Layout.rightMargin: 15
-                    elide: Text.ElideRight
                 }
                 ControlMoreButton
                 {
@@ -78,15 +68,49 @@ Item
             }
             RowLayout
             {
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignTop
-                ControlTag
+                ControlRegularText
                 {
-                    text: "#high"
+                    text: qsTr("Текущий прогресс")
+                    font.bold: true
                 }
-                ControlTag
+                Item
                 {
-                    text: "#large"
+                    Layout.fillWidth: true
+                    Layout.minimumWidth: 10
+                }
+                ControlRegularText
+                {
+                    text: qsTr("Задач завершено: " + numOfDoneTickets + "/" + numOfTickets)
+                    font.bold: true
+                }
+            }
+            Rectangle
+            {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 20
+                radius: 15
+                border.color: "#EDEDED"
+                border.width: 2
+                Rectangle
+                {
+                    height: parent.height - parent.border.width * 2
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: parent.width * (numOfDoneTickets / numOfTickets)
+                    color: "#4B78DC"
+                    radius: 15
+                    clip: true
+
+                    ControlRegularText
+                    {
+                        text: Math.round(numOfDoneTickets / numOfTickets * 100) + "%"
+                        color: "white"
+                        font.bold: true
+                        font.pixelSize: 14
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 10
+                        visible: Math.round(numOfDoneTickets / numOfTickets * 100) <= 5 ? false : true
+                    }
                 }
             }
             Text

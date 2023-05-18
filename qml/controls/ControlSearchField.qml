@@ -5,6 +5,7 @@ Item
 {
     id: root
     height: 20
+    clip: true
 
     property alias phText: textField.placeholderText
 

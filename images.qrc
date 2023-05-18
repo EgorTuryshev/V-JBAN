@@ -17,5 +17,10 @@
         <file>qml/controls/ControlPlusPanel.qml</file>
         <file>qml/controls/ModelControlProject.qml</file>
         <file>qml/controls/ControlRegularText.qml</file>
+        <file>qml/pages/RegisterPage.qml</file>
+        <file>qml/pages/RegisterCompletePage.qml</file>
+        <file>qml/pages/ForgotPasswordPage.qml</file>
+        <file>qml/pages/ForgotPasswordCompletePage.qml</file>
+        <file>res/button.png</file>
     </qresource>
 </RCC>

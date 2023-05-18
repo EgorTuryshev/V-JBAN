@@ -8,4 +8,6 @@ Button
     height: 40
     Material.foreground: "white"
     Material.background: "#2563EB"
+    font.capitalization: Font.MixedCase
+
 }

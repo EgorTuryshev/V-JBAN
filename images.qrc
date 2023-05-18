@@ -13,5 +13,9 @@
         <file>qml/controls/ControlSearchField.qml</file>
         <file>res/search.svg</file>
         <file>qml/controls/ControlComboBox.qml</file>
+        <file>qml/pages/SubMyProjectsPage.qml</file>
+        <file>qml/controls/ControlPlusPanel.qml</file>
+        <file>qml/controls/ModelControlProject.qml</file>
+        <file>qml/controls/ControlRegularText.qml</file>
     </qresource>
 </RCC>

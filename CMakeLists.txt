@@ -11,8 +11,8 @@ qt_standard_project_setup(REQUIRES 6.5)
 qt_add_resources(IMAGE_RESOURCES images.qrc)
 
 qt_add_executable(appVJBAN
-    appcore.h
-    main.cpp appcore.cpp
+    appcore.h categoriesModel.h category.h ticket.h user.h restApi.h ticketsmodel.h
+    main.cpp appcore.cpp categoriesModel.cpp category.cpp ticket.cpp user.cpp restApi.cpp ticketsmodel.cpp
     ${IMAGE_RESOURCES}
 )
 

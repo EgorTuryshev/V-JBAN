@@ -1,7 +1,8 @@
 
+#include <QQmlContext>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
+#include "appcore.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +12,9 @@ int main(int argc, char *argv[])
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
                      &app, []() { QCoreApplication::exit(-1); },
     Qt::QueuedConnection);
-    engine.loadFromModule("VJBAN", "Main");
 
+    appcore appcore;
+    appcore.init();
+    //engine.loadFromModule("VJBAN", "Main");
     return app.exec();
 }

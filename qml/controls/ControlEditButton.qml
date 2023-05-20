@@ -3,7 +3,7 @@ import QtQuick 2.15
 Item
 {
     id: root
-    function onClicked(){}
+    function onClicked(){console.log("clicked")}
 
     Image
     {

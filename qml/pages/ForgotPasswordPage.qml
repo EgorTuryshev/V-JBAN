@@ -51,7 +51,7 @@ Item
             Text
             {
                 Layout.alignment: Qt.AlignHCenter
-                text: qsTr("Войдите, чтобы начать работу!")
+                text: qsTr("Восстановление пароля")
                 font.pixelSize: 36
                 font.family: "Segoe UI"
                 font.bold: true
@@ -59,63 +59,27 @@ Item
             }
             ControlEdit
             {
-                id: emailText
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: parent.width - 170
-                placeholderText: "Введите логин"
+                placeholderText: "Введите адрес электронной почты"
             }
-            ControlEdit
-            {
-                id: passwordText
-                Layout.alignment: Qt.AlignHCenter
-                Layout.preferredHeight: 40
-                Layout.preferredWidth: parent.width - 170
-                placeholderText: "Введите пароль"
-                ControlTextButton
-                {
-                    id: forgotBtn
-                    height: 30
-                    anchors.right: parent.right
-                    anchors.top: parent.bottom
-                    anchors.rightMargin: 0
-                    anchors.topMargin: 0
-                    text: "Забыли пароль?"
-                    onClicked:
-                    {
 
-                    }
-                }
-            }
             ControlButton
             {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 50
-                Layout.preferredWidth: parent.width - 50
+                Layout.preferredWidth: parent.width - 170
                 text:"Продолжить"
                 icon.source: "qrc:/res/button.png"
                 icon.height: 15
                 icon.width: 15
-                onClicked:
-                {
-                    restAPI.sendLoginRequest(emailText.text, passwordText.text);
-                }
-            }
-            Text
-            {
-                text: "Access Token: " + user.accessToken
-            }
-
-            Text
-            {
-                text: "Refresh Token: " + user.refreshToken
-
             }
             ControlTextButton
             {
                 id: createBtn
                 Layout.alignment: Qt.AlignHCenter
-                text: "Ещё не зарегистрированы? Создайте аккаунт!"
+                text: "Назад"
                 onClicked:
                 {
 
@@ -124,4 +88,3 @@ Item
         }
     }
 }
-

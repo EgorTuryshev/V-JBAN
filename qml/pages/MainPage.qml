@@ -31,25 +31,76 @@ Item
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.topMargin: 20
-            anchors.leftMargin: 10
-            Repeater
+            anchors.leftMargin: parent.width * 0.1 + 5
+            anchors.rightMargin: parent.width * 0.1 + 5
+            spacing: 30
+            ControlMenuButton
             {
-                model: 3
-                ControlMenuButton
+                id: projectMenuButton
+                isActive: true
+                text: "Проекты"
+                height: menuBar.height
+
+                onClicked:
                 {
-                    enabled: true
-                    text:"some_text"
-                    height: menuBar.height
+                    router.currentIndex = 0
+                    isActive = true
+                    myTicketsMenuButton.isActive = false
+                    currProjectMenuButton.isActive = false
+                }
+            }
+            ControlMenuButton
+            {
+                id: myTicketsMenuButton
+                isActive: projectMenuButton.isActive || currProjectMenuButton.isActive ? false : true
+                text: "Мои задачи"
+                height: menuBar.height
+
+                onClicked:
+                {
+                    router.currentIndex = 1
+                    isActive = true
+                    projectMenuButton.isActive = false
+                    currProjectMenuButton.isActive = false
+                }
+            }
+            ControlMenuButton
+            {
+                id: currProjectMenuButton
+                isActive: projectMenuButton.isActive || myTicketsMenuButton.isActive ? false : true
+                text: "Текущий проект"
+                height: menuBar.height
+
+                onClicked:
+                {
+                    router.currentIndex = 2
+                    isActive = true
+                    projectMenuButton.isActive = false
+                    myTicketsMenuButton.isActive = false
                 }
             }
         }
     }
     StackLayout
     {
+        id: router
+        anchors.leftMargin: parent.width * 0.1
+        anchors.rightMargin: parent.width * 0.1
+        anchors.topMargin: 35
+        anchors.bottomMargin: 35
         anchors.top: menuBar.bottom
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
+        currentIndex: 0
+        SubMyProjectsPage
+        {
+
+        }
+        SubTicketsPage
+        {
+
+        }
         SubProjectPage
         {
 

@@ -6,7 +6,7 @@ Item
     property alias text: tagText.text
 
     width: textMetrics.width + textMetrics.width / 2
-    height: 20
+    height: 25
 
     Rectangle
     {
@@ -18,10 +18,12 @@ Item
             id: tagText
             anchors.fill: parent
             horizontalAlignment: Qt.AlignHCenter
+            verticalAlignment: Qt.AlignVCenter
             text: "#NULL"
             font.pixelSize: 16
             font.family: "Roboto"
             color: "white"
+            font.bold: true
         }
         TextMetrics
         {

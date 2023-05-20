@@ -8,6 +8,8 @@ Window
 {
     width: 1200
     height: 800
+    minimumWidth: 800
+    minimumHeight: 600
     visible: true
     title: qsTr("V-JBAN")
     StackLayout
@@ -15,13 +17,20 @@ Window
         id: router
         anchors.fill: parent
         currentIndex: 0
-        MainPage
-        {
+        //MainPage
+        //{
+        //
+        //}
 
-        }
-
-        LoginPage
-        {
+        //LoginPage
+        //{
+        //
+        //}
+        //RegisterPage
+        //{
+        //
+        //}
+        ForgotPasswordPage{
 
         }
     }

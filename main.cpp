@@ -1,4 +1,3 @@
-
 #include <QQmlContext>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>

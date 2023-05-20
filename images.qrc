@@ -8,5 +8,19 @@
         <file>qml/controls/ControlMoreButton.qml</file>
         <file>res/more.png</file>
         <file>qml/controls/ControlTimer.qml</file>
+        <file>qml/pages/SubTicketsPage.qml</file>
+        <file>qml/controls/ModelControlTicketLarge.qml</file>
+        <file>qml/controls/ControlSearchField.qml</file>
+        <file>res/search.svg</file>
+        <file>qml/controls/ControlComboBox.qml</file>
+        <file>qml/pages/SubMyProjectsPage.qml</file>
+        <file>qml/controls/ControlPlusPanel.qml</file>
+        <file>qml/controls/ModelControlProject.qml</file>
+        <file>qml/controls/ControlRegularText.qml</file>
+        <file>qml/pages/RegisterPage.qml</file>
+        <file>qml/pages/RegisterCompletePage.qml</file>
+        <file>qml/pages/ForgotPasswordPage.qml</file>
+        <file>qml/pages/ForgotPasswordCompletePage.qml</file>
+        <file>res/button.png</file>
     </qresource>
 </RCC>

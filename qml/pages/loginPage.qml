@@ -59,6 +59,7 @@ Item
             }
             ControlEdit
             {
+                id: emailText
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: parent.width - 170
@@ -66,6 +67,7 @@ Item
             }
             ControlEdit
             {
+                id: passwordText
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: parent.width - 170
@@ -94,6 +96,20 @@ Item
                 icon.source: "qrc:/res/button.png"
                 icon.height: 15
                 icon.width: 15
+                onClicked:
+                {
+                    restAPI.sendLoginRequest(emailText.text, passwordText.text);
+                }
+            }
+            Text
+            {
+                text: "Access Token: " + user.accessToken
+            }
+
+            Text
+            {
+                text: "Refresh Token: " + user.refreshToken
+
             }
             ControlTextButton
             {

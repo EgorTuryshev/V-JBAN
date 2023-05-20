@@ -7,7 +7,7 @@ Item
     id: category
 
     property alias title: title.text
-    property alias tickets: ticketList.model
+    property alias tickets: visualModel.model
 
     Rectangle
     {
@@ -24,6 +24,24 @@ Item
             horizontalOffset: 0
             verticalOffset: 0
         }
+        DropArea
+        {
+            anchors.fill: parent
+
+            onDropped:
+            {
+                console.log("DROPPED");
+            }
+            onEntered:
+            {
+                console.log(drag.source.DelegateModel.itemsIndex);
+            }
+            onExited:
+            {
+                console.log(drag.source.DelegateModel.itemsIndex - 1);
+            }
+        }
+
         Column
         {
             id: column
@@ -44,17 +62,11 @@ Item
                 color:"#696969"
             }
 
-            ListView
+            DelegateModel
             {
-                id: ticketList
-                anchors.fill: parent
-                highlightMoveVelocity: -1
-                highlightMoveDuration: 1000
-                anchors.topMargin: title.height + parent.spacing + 10
-                clip: true
-                spacing: 10
-                model: ListModel
-                {
+                id: visualModel
+                model: tickets
+                /*{
                     ListElement { name: "Ticket 1" }
                     ListElement { name: "Ticket 2" }
                     ListElement { name: "Ticket 3" }
@@ -63,14 +75,26 @@ Item
                     ListElement { name: "Ticket 6" }
                     ListElement { name: "Ticket 7" }
                     ListElement { name: "Ticket 8" }
-                }
-
+                }*/
                 delegate: ModelControlTicket
                 {
                     header: name
                     width: parent.width - 20
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
+            }
+
+            ListView
+            {
+                id: ticketList
+                property int dragItemIndex: -1
+                anchors.fill: parent
+                highlightMoveVelocity: -1
+                highlightMoveDuration: 1000
+                anchors.topMargin: title.height + parent.spacing + 10
+                clip: true
+                spacing: 10
+                model: visualModel
             }
         }
     }

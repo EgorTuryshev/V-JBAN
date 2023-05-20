@@ -4,7 +4,7 @@ import '../controls'
 
 Item
 {
-    id: root
+    id: projectPage
     anchors.fill: parent
     clip: true
     ListView
@@ -12,14 +12,14 @@ Item
         anchors.fill: parent
         orientation: ListView.Horizontal
         spacing: 20
-        model: ListModel
-        {
+        model: categories
+        /*{
             ListElement { name: "Category 1" }
             ListElement { name: "Category 2" }
             ListElement { name: "Category 3" }
             ListElement { name: "Category 4" }
             ListElement { name: "Category 5" }
-        }
+        }*/
 
         delegate: ModelControlCategory
         {

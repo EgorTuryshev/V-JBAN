@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import Qt5Compat.GraphicalEffects
+import MyApp
 
 Item
 {
@@ -14,32 +15,15 @@ Item
         anchors.fill: parent
         layer.enabled: true
         radius: 10
-        color:"#F9F9F9"
+        color: "#F9F9F9"
         layer.effect: DropShadow
         {
-            color:"grey"
+            color: "grey"
             transparentBorder: true
             samples: 40
             radius: 10
             horizontalOffset: 0
             verticalOffset: 0
-        }
-        DropArea
-        {
-            anchors.fill: parent
-
-            onDropped:
-            {
-                console.log("DROPPED");
-            }
-            onEntered:
-            {
-                console.log(drag.source.DelegateModel.itemsIndex);
-            }
-            onExited:
-            {
-                console.log(drag.source.DelegateModel.itemsIndex - 1);
-            }
         }
 
         Column
@@ -59,23 +43,17 @@ Item
                 font.pixelSize: 36
                 font.family: "Segoe UI"
                 height: 30
-                color:"#696969"
+                color: "#696969"
             }
 
             DelegateModel
             {
                 id: visualModel
-                model: tickets
-                /*{
-                    ListElement { name: "Ticket 1" }
-                    ListElement { name: "Ticket 2" }
-                    ListElement { name: "Ticket 3" }
-                    ListElement { name: "Ticket 4" }
-                    ListElement { name: "Ticket 5" }
-                    ListElement { name: "Ticket 6" }
-                    ListElement { name: "Ticket 7" }
-                    ListElement { name: "Ticket 8" }
-                }*/
+                groups: [DelegateModelGroup
+                {
+                    name: category.title.toLowerCase()
+                    includeByDefault: true
+                }]
                 delegate: ModelControlTicket
                 {
                     header: name
@@ -87,7 +65,6 @@ Item
             ListView
             {
                 id: ticketList
-                property int dragItemIndex: -1
                 anchors.fill: parent
                 highlightMoveVelocity: -1
                 highlightMoveDuration: 1000

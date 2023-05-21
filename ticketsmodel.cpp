@@ -34,6 +34,48 @@ int ticketsModel::columnCount(const QModelIndex& parent) const
     return MODEL_TICKETS_COLUMN_COUNT;
 }
 
+bool ticketsModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (index.isValid() && role == Qt::EditRole)
+    {
+        emit dataChanged(index, index);
+        qDebug("F");
+        return true;
+    }
+    return false;
+}
+
+void ticketsModel::insertTicketInto(ticket tick, int position)
+{
+    m_tickets.insert(position, tick);
+}
+
+void ticketsModel::moveTicketInternally(int fromIndex, int toIndex)
+{
+    if (fromIndex < 0 || fromIndex >= m_tickets.size() || toIndex < 0 || toIndex >= m_tickets.size())
+    {
+        //qDebug() << "Недопустимые индексы.";
+        return;
+    }
+
+    if (fromIndex == toIndex)
+    {
+        //qDebug() << "Начальный и конечный индексы совпадают.";
+        return;
+    }
+
+    ticket item = m_tickets.takeAt(fromIndex);
+    insertTicketInto(item, toIndex);
+
+    /*QModelIndex fromModelIndex = createIndex(fromIndex, 0);
+    QModelIndex toModelIndex = createIndex(toIndex, 0);
+    emit dataChanged(fromModelIndex, fromModelIndex);
+    emit dataChanged(toModelIndex, toModelIndex);
+    emit modelChanged();*/
+    qDebug() << "Элемент перемещен.";
+    displayNames();
+}
+
 void ticketsModel::displayDebugInfo()
 {
     foreach(ticket tick, m_tickets)
@@ -47,6 +89,22 @@ void ticketsModel::displayDebugInfo()
         qDebug() << tick.getEndDate();
         qDebug() << tick.getDescription();
         qDebug() << tick.getChat();
+    }
+}
+
+void ticketsModel::displayIds()
+{
+    foreach(ticket tick, m_tickets)
+    {
+        qDebug() << tick.getId();
+    }
+}
+
+void ticketsModel::displayNames()
+{
+    foreach(ticket tick, m_tickets)
+    {
+        qDebug() << tick.getName();
     }
 }
 

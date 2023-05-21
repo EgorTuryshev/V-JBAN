@@ -9,11 +9,8 @@ appcore::appcore(QObject *parent) : QObject(parent), m_restAPI(&m_user) {
 void appcore::init() {
     m_engine.rootContext()->setContextProperty("restAPI", &m_restAPI);
     m_engine.rootContext()->setContextProperty("user", &m_user);
-    categoriesModel categories;
-    categories.populate();
-    qDebug() << categories.isEmpty();
-    categories.displayDebugInfo();
-    m_engine.rootContext()->setContextProperty("categories", &categories);
+    qmlRegisterType<categoriesModel>("MyApp", 1, 0, "CategoriesModel");
+    qmlRegisterType<ticketsModel>("MyApp", 1, 0, "TicketsModel");
     m_engine.addImportPath(":/");
     m_engine.load(QUrl(QStringLiteral("qrc:/VJBAN/qml/Main.qml")));
 }

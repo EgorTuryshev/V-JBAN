@@ -29,6 +29,15 @@ int categoriesModel::columnCount(const QModelIndex& parent) const
     return MODEL_CATEGORIES_COLUMN_COUNT;
 }
 
+int categoriesModel::getCategoryIndexByName(QString name) const
+{
+    foreach(category cat, m_categories)
+    {
+        if(cat.getName().toLower() == name) return m_categories.indexOf(cat);
+    }
+    return -1;
+}
+
 void categoriesModel::populate() {
     for (int i = 0; i < 3; ++i) {
         QString categoryName = "Category " + QString::number(i + 1);
@@ -47,7 +56,7 @@ void categoriesModel::populate() {
             QVariant chat = "Chat " + QString::number(j + 1);
             QString description = "Description of Ticket " + QString::number(j + 1);
             ticket *newTicket = new ticket(ticketName, people, ticketId, priority, difficulty,
-                                            startDate, endDate, chat, description);
+                                           startDate, endDate, chat, description);
             newCategory.getTickets()->append(*newTicket);
         }
         this->append(newCategory);
@@ -58,7 +67,7 @@ void categoriesModel::displayNames()
 {
     foreach(category cat, m_categories)
     {
-            qDebug() << cat.getName();
+        qDebug() << cat.getName();
     }
 }
 
@@ -66,11 +75,11 @@ void categoriesModel::displayDebugInfo()
 {
     foreach(category cat, m_categories)
     {
-            qDebug() << cat.getName();
-            qDebug() << cat.getId();
-            qDebug() << cat.getIsFinish();
-            qDebug() << cat.getTickets();
-            cat.getTickets()->displayDebugInfo();
+        qDebug() << cat.getName();
+        qDebug() << cat.getId();
+        qDebug() << cat.getIsFinish();
+        qDebug() << cat.getTickets();
+        cat.getTickets()->displayDebugInfo();
     }
 }
 
@@ -117,6 +126,21 @@ void categoriesModel::append(category cat)
     emit modelChanged();
 }
 
+void categoriesModel::addTicket(int categoryIndex, ticket tick) const
+{
+    m_categories.at(categoryIndex).addTicket(tick);
+}
+
+void categoriesModel::removeTicketByIndex(int categoryIndex, int index) const
+{
+    m_categories.at(categoryIndex).removeTicketAt(index);
+}
+
+ticket categoriesModel::getTicketByIndex(int categoryIndex, int index) const
+{
+    return m_categories.at(categoryIndex).getTickets()->getTickets().at(index);
+}
+
 bool categoriesModel::isEmpty() const
 {
     return m_categories.empty();
@@ -124,6 +148,19 @@ bool categoriesModel::isEmpty() const
 
 void categoriesModel::updateFromServer()
 {
+}
+
+void categoriesModel::moveTicket(int fromCategory, int fromIndex, int toCategory, int toIndex)
+{
+    ticket tick = getTicketByIndex(fromCategory, fromIndex);
+    m_categories.at(toCategory).getTickets()->insertTicketInto(tick, toIndex);
+    removeTicketByIndex(fromCategory, fromIndex);
+
+    QModelIndex fromModelIndex = createIndex(fromCategory, 0);
+    QModelIndex toModelIndex = createIndex(toCategory, 0);
+    emit dataChanged(fromModelIndex, fromModelIndex);
+    emit dataChanged(toModelIndex, toModelIndex);
+    emit modelChanged();
 }
 
 QList<category> categoriesModel::getCategories()

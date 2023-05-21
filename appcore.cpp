@@ -17,11 +17,12 @@ void appcore::init() {
     m_engine.rootContext()->setContextProperty("projectModel", &m_projectModel);
     m_engine.rootContext()->setContextProperty("projectSortModel", &m_projectSortModel);
     m_projectSortModel.setSourceModel(&m_projectModel);
+
     categoriesModel categories;
     categories.populate();
-//    qDebug() << categories.isEmpty();
-//    categories.displayDebugInfo();
     m_engine.rootContext()->setContextProperty("categories", &categories);
+    qmlRegisterType<categoriesModel>("MyApp", 1, 0, "CategoriesModel");
+    qmlRegisterType<ticketsModel>("MyApp", 1, 0, "TicketsModel");
     m_engine.addImportPath(":/");
     m_engine.load(QUrl(QStringLiteral("qrc:/VJBAN/qml/Main.qml")));
 }

@@ -8,6 +8,8 @@ Item
     id: root
 
     property alias header: header.text
+    property var fromIndex
+    property var toIndex
 
     width: 300
     height: 100
@@ -16,33 +18,39 @@ Item
         id: mouseArea
         property bool held: false
         anchors.fill: parent
-        drag.onActiveChanged:
-        {
-            if (mouseArea.drag.active)
-            {
-                ticketList.dragItemIndex = index // should absolete index of ticket
-            }
-        }
-        drag.target: held ? ticketRect : undefined
 
+        drag.target: held ? ticketRect : undefined
         onPressAndHold: held = true
-        onReleased: held = false
+        onReleased:
+        {
+            held = false;
+        }
+
         DropArea
         {
-            anchors
-            {
-                fill: parent
-                margins: 10
-            }
+            id: dropArea
+            anchors.fill: parent
 
             onEntered: (drag) =>
-            {
-                visualModel.items.move(
-                    drag.source.DelegateModel.itemsIndex,
-                    mouseArea.DelegateModel.itemsIndex);
-                    // move element between models based on ticket index
-            }
+                       {
+                           fromIndex = drag.source.DelegateModel.itemsIndex;
+                           toIndex = mouseArea.DelegateModel.itemsIndex;
+                           var fromColumn = drag.source.DelegateModel.groups[1];
+                           var toColumn = mouseArea.DelegateModel.groups[1];
+
+                           if (fromColumn !== toColumn)
+                           {
+                               categoriesModel.moveTicket(categoriesModel.getCategoryIndexByName(fromColumn), fromIndex,
+                                                          categoriesModel.getCategoryIndexByName(toColumn), toIndex);
+                           }
+                           else
+                           {
+                               visualModel.items.move(fromIndex, toIndex);
+                               tickets.moveTicketInternally(fromIndex, toIndex);
+                           }
+                       }
         }
+
         Rectangle
         {
             id: ticketRect
@@ -156,52 +164,11 @@ Item
                             height: 10
                             width: thirdRow.width
                             visible: flickable.contentWidth > flickable.width
-                            //position: flickable.position.x / (flickable.contentWidth - flickable.width)
                         }
                         RowLayout
                         {
                             id: rowLayout
                             height: 20
-                            ControlAvatar
-                            {
-                                width: 20
-                            }
-                            ControlAvatar
-                            {
-                                width: 20
-                            }
-                            ControlAvatar
-                            {
-                                width: 20
-                            }
-                            ControlAvatar
-                            {
-                                width: 20
-                            }
-                            ControlAvatar
-                            {
-                                width: 20
-                            }
-                            ControlAvatar
-                            {
-                                width: 20
-                            }
-                            ControlAvatar
-                            {
-                                width: 20
-                            }
-                            ControlAvatar
-                            {
-                                width: 20
-                            }
-                            ControlAvatar
-                            {
-                                width: 20
-                            }
-                            ControlAvatar
-                            {
-                                width: 20
-                            }
                             ControlAvatar
                             {
                                 width: 20

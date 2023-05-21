@@ -11,7 +11,7 @@
 class categoriesModel : public QAbstractListModel
 {
     Q_OBJECT
-
+    QML_ELEMENT
 public:
     explicit categoriesModel(QObject* parent = nullptr);
 
@@ -35,10 +35,18 @@ public:
     QHash<int, QByteArray> roleNames() const override;
     QVariant data(const QModelIndex &, int) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+
+    Q_INVOKABLE int getCategoryIndexByName(QString name) const;
+    Q_INVOKABLE int indexOfCategory(category* category) const {return m_categories.indexOf(*category);}
+    /* ------------------------ Tickets manipulation ------------------------ */
+    Q_INVOKABLE void moveTicket(int fromCategory, int fromIndex, int toCategory, int toIndex);
+    Q_INVOKABLE void addTicket(int categoryIndex, ticket tick) const;
+    Q_INVOKABLE void removeTicketByIndex(int categoryIndex, int index) const;
+    Q_INVOKABLE ticket getTicketByIndex(int categoryIndex, int index) const;
     /* ------------------------ DEBUG STUFF ------------------------ */
-    void populate();
+    Q_INVOKABLE void populate();
     void displayNames();
-    void displayDebugInfo();
+    Q_INVOKABLE void displayDebugInfo();
 private:
     QList<category> m_categories;
 

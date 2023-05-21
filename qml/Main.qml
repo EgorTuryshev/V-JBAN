@@ -17,30 +17,6 @@ Window
         id: loader
         anchors.fill: parent
         sourceComponent: LoginPage {
-
         }
     }
-
-//    StackLayout
-//    {
-//        id: router
-//        anchors.fill: parent
-//        currentIndex: 0
-//        LoginPage
-//        {
-
-//        }
-//        RegisterPage
-//        {
-
-//        }
-//        ForgotPasswordPage
-//        {
-
-//        }
-//        MainPage
-//        {
-
-//        }
-//    }
 }

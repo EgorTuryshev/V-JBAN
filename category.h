@@ -16,6 +16,12 @@ public:
     ticketsModel * getTickets() const {return m_tickets;};
     QVariant getId() const {return m_id;};
     QVariant getIsFinish() const {return m_isFinish;};
+    bool operator == (const category& cat) const
+    {
+        return this->getId() == cat.getId();
+    }
+    void addTicket(ticket tick) const;
+    void removeTicketAt(int index) const;
 private:
     QString m_name;
     ticketsModel * m_tickets;

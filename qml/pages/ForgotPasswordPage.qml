@@ -82,7 +82,7 @@ Item
                 text: "Назад"
                 onClicked:
                 {
-
+                    root.parent.setSource("LoginPage.qml");
                 }
             }
         }

@@ -30,15 +30,15 @@ Item
 
             onDropped:
             {
-                console.log("DROPPED");
+//                console.log("DROPPED");
             }
             onEntered:
             {
-                console.log(drag.source.DelegateModel.itemsIndex);
+//                console.log(drag.source.DelegateModel.itemsIndex);
             }
             onExited:
             {
-                console.log(drag.source.DelegateModel.itemsIndex - 1);
+//                console.log(drag.source.DelegateModel.itemsIndex - 1);
             }
         }
 

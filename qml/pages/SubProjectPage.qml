@@ -29,6 +29,5 @@ Item
             anchors.top: parent.top
             anchors.topMargin: 20
         }
-
     }
 }

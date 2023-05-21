@@ -9,29 +9,38 @@ Window
     width: 1200
     height: 800
     minimumWidth: 800
-    minimumHeight: 600
+    minimumHeight: 800
     visible: true
     title: qsTr("V-JBAN")
-    StackLayout
-    {
-        id: router
-        anchors.fill: parent
-        currentIndex: 0
-        //MainPage
-        //{
-        //
-        //}
 
-        //LoginPage
-        //{
-        //
-        //}
-        //RegisterPage
-        //{
-        //
-        //}
-        ForgotPasswordPage{
+    Loader {
+        id: loader
+        anchors.fill: parent
+        sourceComponent: LoginPage {
 
         }
     }
+
+//    StackLayout
+//    {
+//        id: router
+//        anchors.fill: parent
+//        currentIndex: 0
+//        LoginPage
+//        {
+
+//        }
+//        RegisterPage
+//        {
+
+//        }
+//        ForgotPasswordPage
+//        {
+
+//        }
+//        MainPage
+//        {
+
+//        }
+//    }
 }

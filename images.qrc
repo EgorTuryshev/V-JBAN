@@ -22,5 +22,6 @@
         <file>qml/pages/ForgotPasswordPage.qml</file>
         <file>qml/pages/ForgotPasswordCompletePage.qml</file>
         <file>res/button.png</file>
+        <file>qml/controls/ControlRegularErrorText.qml</file>
     </qresource>
 </RCC>

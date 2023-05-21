@@ -8,7 +8,30 @@ import '../controls'
 Item
 {
     id: root
+    property string errorMessage: ""
+
     anchors.fill: parent
+
+    Connections
+    {
+        target: restAPI
+        function onErrorReceived(error) {
+            errorMessage = error;
+            errorText.visible = true;
+        }
+    }
+    Connections
+    {
+        target: restAPI
+        function onTokensSet(accessToken, refreshToken) {
+            if (accessToken !== "" && refreshToken !== "")
+            {
+                restAPI.getProjects();
+                root.parent.setSource("MainPage.qml");
+            }
+        }
+    }
+
     Rectangle
     {
         id: background
@@ -16,7 +39,7 @@ Item
         anchors.verticalCenter: parent.verticalCenter
         color: "#FEFEFE"
         width: 700
-        height: 500
+        height: 600
         radius: 10
         layer.enabled: true
         layer.effect: DropShadow
@@ -72,6 +95,7 @@ Item
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: parent.width - 170
                 placeholderText: "Введите пароль"
+                echoMode: TextInput.Password
                 ControlTextButton
                 {
                     id: forgotBtn
@@ -83,33 +107,51 @@ Item
                     text: "Забыли пароль?"
                     onClicked:
                     {
-
+                        root.parent.setSource("ForgotPasswordPage.qml");
                     }
                 }
+            }
+            ControlRegularErrorText
+            {
+                id: errorText
+                visible: false
+                text: errorMessage
+
+                Layout.preferredWidth: parent.width - 170
+                Layout.alignment: Qt.AlignHCenter
             }
             ControlButton
             {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 50
-                Layout.preferredWidth: parent.width - 50
+                Layout.preferredWidth: parent.width - 170
                 text:"Продолжить"
                 icon.source: "qrc:/res/button.png"
                 icon.height: 15
                 icon.width: 15
                 onClicked:
                 {
+                    errorMessage = "";
+                    errorText.visible = false;
                     restAPI.sendLoginRequest(emailText.text, passwordText.text);
                 }
             }
-            Text
+            ControlButton
             {
-                text: "Access Token: " + user.accessToken
-            }
-
-            Text
-            {
-                text: "Refresh Token: " + user.refreshToken
-
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredHeight: 50
+                Layout.preferredWidth: parent.width - 170
+                text:"Я дебил"
+                icon.source: "qrc:/res/button.png"
+                icon.height: 15
+                icon.width: 15
+                Material.background: "#D72F2F"
+                onClicked:
+                {
+                    errorMessage = "";
+                    errorText.visible = false;
+                    restAPI.sendLoginRequest("johndoe@example.com", "123");
+                }
             }
             ControlTextButton
             {
@@ -118,7 +160,7 @@ Item
                 text: "Ещё не зарегистрированы? Создайте аккаунт!"
                 onClicked:
                 {
-
+                    root.parent.setSource("RegisterPage.qml");
                 }
             }
         }

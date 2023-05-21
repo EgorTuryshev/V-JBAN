@@ -8,6 +8,8 @@ Item
     clip: true
 
     property alias phText: textField.placeholderText
+    property alias mainText: textField.text
+    property var onChanged
 
     Rectangle
     {
@@ -40,6 +42,9 @@ Item
             placeholderText: qsTr("")
             Material.accent: '#D4D4D8'
             Material.foreground: '#71717A'
+            onTextChanged: {
+                onChanged();
+            }
         }
 
         Image

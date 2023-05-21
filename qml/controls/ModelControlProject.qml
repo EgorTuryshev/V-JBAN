@@ -6,8 +6,8 @@ Item
 {
     id: root
 
-    property alias header: header.text
-    property alias description: desc.text
+    property string titleText
+    property string descriptionText
     property int numOfDoneTickets: 3
     property int numOfTickets: 10
 
@@ -43,7 +43,7 @@ Item
                 Text
                 {
                     id: header
-                    text: "Проект #1"
+                    text: root.titleText
                     font.pixelSize: 20
                     font.family: "Segoe UI"
                     color: "#696969"
@@ -117,7 +117,8 @@ Item
             {
                 Layout.alignment: Qt.AlignTop
                 id: desc
-                text: qsTr("Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit. Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit.")
+//                text: qsTr("Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit. Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit.")
+                text: root.descriptionText
                 font.pixelSize: 16
                 font.family: "Segoe UI"
                 color: "#696969"

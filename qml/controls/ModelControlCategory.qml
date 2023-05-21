@@ -25,7 +25,23 @@ Item
             horizontalOffset: 0
             verticalOffset: 0
         }
+        DropArea
+        {
+            anchors.fill: parent
 
+            onDropped:
+            {
+//                console.log("DROPPED");
+            }
+            onEntered:
+            {
+//                console.log(drag.source.DelegateModel.itemsIndex);
+            }
+            onExited:
+            {
+//                console.log(drag.source.DelegateModel.itemsIndex - 1);
+            }
+        }
         Column
         {
             id: column

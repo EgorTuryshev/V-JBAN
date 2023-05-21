@@ -45,7 +45,6 @@ Item
                 font.family: "Segoe UI"
                 color: "#696969"
             }
-
             ControlButton
             {
                 Layout.alignment: Qt.AlignHCenter

@@ -1,4 +1,6 @@
 import QtQuick 2.15
+import QtQuick.Layouts 1.15
+import QtQuick.Controls 2.15
 import MyApp
 
 import '../controls'
@@ -6,32 +8,56 @@ import '../controls'
 Item
 {
     id: projectPage
-    anchors.fill: parent
-    clip: true
-    CategoriesModel
-    {
-        id: categoriesModel
-        Component.onCompleted:
-        {
-            categoriesModel.populate();
-            //console.log("Model count: " + categoriesModel.rowCount());
-        }
-    }
-    ListView
-    {
-        anchors.fill: parent
-        orientation: ListView.Horizontal
-        spacing: 20
-        model: categoriesModel
 
-        delegate: ModelControlCategory
+    anchors.fill: parent
+
+    ColumnLayout
+    {
+       anchors.fill: parent
+       RowLayout
+       {
+           Layout.fillWidth: true
+           spacing: 30
+
+           ButtonGroup
+           {
+               id: subMenuBtnGroup
+               exclusive: true
+           }
+
+           Repeater
+           {
+               id: menuItems
+
+               Component.onCompleted: menuItems.itemAt(0).checked = true
+
+               model: ListModel
+               {
+                   ListElement { name: 'Задачи' }
+                   ListElement { name: 'Информация о проекте' }
+               }
+
+               delegate: ControlMenuButton
+               {
+                   text: name
+                   font.pixelSize: 24
+                   font.bold: true
+                   ButtonGroup.group: subMenuBtnGroup
+                   onClicked: router.currentIndex = index;
+               }
+           }
+       }
+        Loader
         {
-            tickets: model.tickets
-            title: name
-            width: 300
-            anchors.bottom: parent.bottom
-            anchors.top: parent.top
-            anchors.topMargin: 20
+            id: router
+            property int currentIndex: 0
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            sourceComponent: PartProjectPageTasks { }
+            onCurrentIndexChanged:
+            {
+                currentIndex === 0 ? setSource("PartProjectPageTasks.qml") : setSource("PartProjectPageInfo.qml");
+            }
         }
     }
 }

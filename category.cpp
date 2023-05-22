@@ -6,7 +6,7 @@ category::category(const QString& name, ticketsModel* tickets,
     m_name(name), m_tickets(tickets),
     m_id(id), m_isFinish(isFinish){}
 
-void category::addTicket(ticket tick) const
+void category::addTicket(ticket* tick) const
 {
     m_tickets->append(tick);
 }

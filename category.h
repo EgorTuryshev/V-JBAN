@@ -20,7 +20,7 @@ public:
     {
         return this->getId() == cat.getId();
     }
-    void addTicket(ticket tick) const;
+    void addTicket(ticket *tick) const;
     void removeTicketAt(int index) const;
 private:
     QString m_name;

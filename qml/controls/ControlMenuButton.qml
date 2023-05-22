@@ -4,9 +4,12 @@ import QtQuick.Controls.Material 2.15
 ControlTextButton
 {
     id: root
-    property bool isActive: false
 
-    Material.foreground: isActive ? "#2563EB" : "#696969"
+    checkable: true
+
+    Material.accent: "#2563EB"
+    Material.foreground: checked ? "#2563EB" : "#696969"
+
     indicator: Rectangle
     {
         anchors.top: parent.bottom
@@ -16,6 +19,12 @@ ControlTextButton
         height: 3
         radius: 10
         color: "#2563EB"
-        visible: parent.isActive
+        visible: parent.checked
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        enabled: false
+        cursorShape: Qt.PointingHandCursor
     }
 }

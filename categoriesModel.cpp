@@ -38,6 +38,15 @@ int categoriesModel::getCategoryIndexByName(QString name) const
     return -1;
 }
 
+int categoriesModel::getCategoryIndexById(QString id) const
+{
+    foreach(category cat, m_categories)
+    {
+        if(cat.getId().toString() == id) return m_categories.indexOf(cat);
+    }
+    return -1;
+}
+
 void categoriesModel::populate() {
     for (int i = 0; i < 3; ++i) {
         QString categoryName = "Category " + QString::number(i + 1);
@@ -57,7 +66,7 @@ void categoriesModel::populate() {
             QString description = "Description of Ticket " + QString::number(j + 1);
             ticket *newTicket = new ticket(ticketName, people, ticketId, priority, difficulty,
                                            startDate, endDate, chat, description);
-            newCategory.getTickets()->append(*newTicket);
+            newCategory.getTickets()->append(newTicket);
         }
         this->append(newCategory);
     }
@@ -126,7 +135,7 @@ void categoriesModel::append(category cat)
     emit modelChanged();
 }
 
-void categoriesModel::addTicket(int categoryIndex, ticket tick) const
+void categoriesModel::addTicket(int categoryIndex, ticket* tick) const
 {
     m_categories.at(categoryIndex).addTicket(tick);
 }
@@ -136,9 +145,9 @@ void categoriesModel::removeTicketByIndex(int categoryIndex, int index) const
     m_categories.at(categoryIndex).removeTicketAt(index);
 }
 
-ticket categoriesModel::getTicketByIndex(int categoryIndex, int index) const
+ticket* categoriesModel::getTicketByIndex(int categoryIndex, int index) const
 {
-    return m_categories.at(categoryIndex).getTickets()->getTickets().at(index);
+    return m_categories.at(categoryIndex).getTickets()->getTickets()->at(index);
 }
 
 bool categoriesModel::isEmpty() const
@@ -152,7 +161,7 @@ void categoriesModel::updateFromServer()
 
 void categoriesModel::moveTicket(int fromCategory, int fromIndex, int toCategory, int toIndex)
 {
-    ticket tick = getTicketByIndex(fromCategory, fromIndex);
+    ticket* tick = getTicketByIndex(fromCategory, fromIndex);
     m_categories.at(toCategory).getTickets()->insertTicketInto(tick, toIndex);
     removeTicketByIndex(fromCategory, fromIndex);
 

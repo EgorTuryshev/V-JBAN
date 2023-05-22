@@ -9,5 +9,4 @@ Button
     Material.foreground: "white"
     Material.background: "#2563EB"
     font.capitalization: Font.MixedCase
-
 }

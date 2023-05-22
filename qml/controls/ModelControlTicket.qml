@@ -40,8 +40,9 @@ Item
 
                            if (fromColumn !== toColumn)
                            {
-                               categoriesModel.moveTicket(categoriesModel.getCategoryIndexByName(fromColumn), fromIndex,
-                                                          categoriesModel.getCategoryIndexByName(toColumn), toIndex);
+                               // add space element here, on Release add in model
+                               categoriesModel.moveTicket(categoriesModel.getCategoryIndexById(fromColumn), fromIndex,
+                                                          categoriesModel.getCategoryIndexById(toColumn), toIndex);
                            }
                            else
                            {

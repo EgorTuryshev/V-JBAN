@@ -44,7 +44,7 @@ bool TicketsModel::setData(const QModelIndex& index, const QVariant& value, int 
     return false;
 }
 
-void TicketsModel::insertTicketInto(Ticket tick, int position)
+void TicketsModel::insertTicketInto(Ticket* tick, int position)
 {
     m_tickets.insert(position, tick);
 }
@@ -61,7 +61,7 @@ void TicketsModel::moveTicketInternally(int fromIndex, int toIndex)
         return;
     }
 
-    Ticket item = m_tickets.takeAt(fromIndex);
+    Ticket* item = m_tickets.takeAt(fromIndex);
     insertTicketInto(item, toIndex);
 
     /*QModelIndex fromModelIndex = createIndex(fromIndex, 0);
@@ -75,30 +75,33 @@ void TicketsModel::moveTicketInternally(int fromIndex, int toIndex)
 
 void TicketsModel::displayDebugInfo()
 {
-    foreach (Ticket tick, m_tickets) {
-        qDebug() << tick.getName();
-        qDebug() << tick.getId();
-        qDebug() << tick.getPeople();
-        qDebug() << tick.getPriority();
-        qDebug() << tick.getDifficulty();
-        qDebug() << tick.getStartDate();
-        qDebug() << tick.getEndDate();
-        qDebug() << tick.getDescription();
-        qDebug() << tick.getChat();
+    foreach(Ticket* tick, m_tickets)
+    {
+        qDebug() << tick->getName();
+        qDebug() << tick->getId();
+        qDebug() << tick->getPeople();
+        qDebug() << tick->getPriority();
+        qDebug() << tick->getDifficulty();
+        qDebug() << tick->getStartDate();
+        qDebug() << tick->getEndDate();
+        qDebug() << tick->getDescription();
+        qDebug() << tick->getChat();
     }
 }
 
 void TicketsModel::displayIds()
 {
-    foreach (Ticket tick, m_tickets) {
-        qDebug() << tick.getId();
+    foreach(Ticket* tick, m_tickets)
+    {
+        qDebug() << tick->getId();
     }
 }
 
 void TicketsModel::displayNames()
 {
-    foreach (Ticket tick, m_tickets) {
-        qDebug() << tick.getName();
+    foreach(Ticket* tick, m_tickets)
+    {
+        qDebug() << tick->getName();
     }
 }
 
@@ -107,25 +110,25 @@ QVariant TicketsModel::data(const QModelIndex& index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    const Ticket& tick = m_tickets[index.row()];
+    const Ticket* tick = m_tickets[index.row()];
     if (role == NameRole)
-        return tick.getName();
+        return tick->getName();
     if (role == PeopleRole)
-        return tick.getPeople();
+        return tick->getPeople();
     if (role == IdRole)
-        return tick.getId();
+        return tick->getId();
     if (role == PriorityRole)
-        return tick.getPriority();
+        return tick->getPriority();
     if (role == DifficultyRole)
-        return tick.getDifficulty();
+        return tick->getDifficulty();
     if (role == StartDateRole)
-        return tick.getStartDate();
+        return tick->getStartDate();
     if (role == EndDateRole)
-        return tick.getEndDate();
+        return tick->getEndDate();
     if (role == ChatRole)
-        return tick.getChat();
+        return tick->getChat();
     if (role == DescriptionRole)
-        return tick.getDescription();
+        return tick->getDescription();
 
     return QVariant();
 }
@@ -146,7 +149,7 @@ void TicketsModel::clear()
     emit modelChanged();
 }
 
-void TicketsModel::append(Ticket tick)
+void TicketsModel::append(Ticket* tick)
 {
     int index = m_tickets.length();
     beginInsertRows(QModelIndex(), index, index);
@@ -164,7 +167,7 @@ void TicketsModel::updateFromServer()
 {
 }
 
-QList<Ticket> TicketsModel::getTickets()
+QList<Ticket*>* TicketsModel::getTickets()
 {
-    return m_tickets;
+    return &m_tickets;
 }

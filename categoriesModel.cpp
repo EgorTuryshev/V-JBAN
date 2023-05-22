@@ -38,8 +38,8 @@ int CategoriesModel::getCategoryIndexByName(QString name) const
     return -1;
 }
 
-void CategoriesModel::populate()
-{
+
+void CategoriesModel::populate() {
     for (int i = 0; i < 3; ++i) {
         QString categoryName = "Category " + QString::number(i + 1);
         QVariant categoryId  = i + 1;
@@ -56,12 +56,21 @@ void CategoriesModel::populate()
             QDate endDate(2023, 5, j + 2);
             QVariant chat       = "Chat " + QString::number(j + 1);
             QString description = "Description of Ticket " + QString::number(j + 1);
-            Ticket* newTicket   = new Ticket(ticketName, people, ticketId, priority, difficulty,
-                  startDate, endDate, chat, description);
-            newCategory.getTickets()->append(*newTicket);
+            Ticket *newTicket = new Ticket(ticketName, people, ticketId, priority, difficulty,
+                                           startDate, endDate, chat, description);
+            newCategory.getTickets()->append(newTicket);
         }
         this->append(newCategory);
     }
+}
+  
+int categoriesModel::getCategoryIndexById(QString id) const
+{
+    foreach(category cat, m_categories)
+    {
+        if(cat.getId().toString() == id) return m_categories.indexOf(cat);
+    }
+    return -1;
 }
 
 void CategoriesModel::displayNames()
@@ -125,7 +134,7 @@ void CategoriesModel::append(Category cat)
     emit modelChanged();
 }
 
-void CategoriesModel::addTicket(int categoryIndex, Ticket tick) const
+void CategoriesModel::addTicket(int categoryIndex, Ticket* tick) const
 {
     m_categories.at(categoryIndex).addTicket(tick);
 }
@@ -135,9 +144,9 @@ void CategoriesModel::removeTicketByIndex(int categoryIndex, int index) const
     m_categories.at(categoryIndex).removeTicketAt(index);
 }
 
-Ticket CategoriesModel::getTicketByIndex(int categoryIndex, int index) const
+Ticket* CategoriesModel::getTicketByIndex(int categoryIndex, int index) const
 {
-    return m_categories.at(categoryIndex).getTickets()->getTickets().at(index);
+    return m_categories.at(categoryIndex).getTickets()->getTickets()->at(index);
 }
 
 bool CategoriesModel::isEmpty() const
@@ -151,7 +160,7 @@ void CategoriesModel::updateFromServer()
 
 void CategoriesModel::moveTicket(int fromCategory, int fromIndex, int toCategory, int toIndex)
 {
-    Ticket tick = getTicketByIndex(fromCategory, fromIndex);
+    Ticket* tick = getTicketByIndex(fromCategory, fromIndex);
     m_categories.at(toCategory).getTickets()->insertTicketInto(tick, toIndex);
     removeTicketByIndex(fromCategory, fromIndex);
 

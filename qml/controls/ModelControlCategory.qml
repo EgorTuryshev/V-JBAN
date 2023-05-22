@@ -8,6 +8,7 @@ Item
     id: category
 
     property alias title: title.text
+    property string categoryId
     property alias tickets: visualModel.model
 
     Rectangle
@@ -72,7 +73,7 @@ Item
                 id: visualModel
                 groups: [DelegateModelGroup
                 {
-                    name: category.title.toLowerCase()
+                    name: category.categoryId
                     includeByDefault: true
                 }]
                 delegate: ModelControlTicket

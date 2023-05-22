@@ -5,7 +5,7 @@ import Qt5Compat.GraphicalEffects
 
 ComboBox {
     id: root
-
+    
     Material.accent: "#7a7a7a"
     Material.foreground: "#7a7a7a"
     Material.background: "#7a7a7a"

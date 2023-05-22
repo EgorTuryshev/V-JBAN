@@ -20,7 +20,8 @@ public:
     {
         return this->getId() == cat.getId();
     }
-    void addTicket(Ticket tick) const;
+  
+    void addTicket(Ticket *tick) const;
     void removeTicketAt(int index) const;
 
 private:

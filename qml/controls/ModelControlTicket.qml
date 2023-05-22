@@ -33,18 +33,22 @@ Item
             anchors.fill: parent
 
             onEntered: (drag) => {
-                fromIndex = drag.source.DelegateModel.itemsIndex;
-                toIndex = mouseArea.DelegateModel.itemsIndex;
-                var fromColumn = drag.source.DelegateModel.groups[1];
-                var toColumn = mouseArea.DelegateModel.groups[1];
+              fromIndex = drag.source.DelegateModel.itemsIndex;
+              toIndex = mouseArea.DelegateModel.itemsIndex;
+              var fromColumn = drag.source.DelegateModel.groups[1];
+              var toColumn = mouseArea.DelegateModel.groups[1];
 
-                if (fromColumn !== toColumn) {
-                   categoriesModel.moveTicket(categoriesModel.getCategoryIndexByName(fromColumn), fromIndex,
-                                              categoriesModel.getCategoryIndexByName(toColumn), toIndex);
-                } else {
-                   visualModel.items.move(fromIndex, toIndex);
-                   tickets.moveTicketInternally(fromIndex, toIndex);
-                }
+              if (fromColumn !== toColumn)
+              {
+                 // add space element here, on Release add in model
+                 categoriesModel.moveTicket(categoriesModel.getCategoryIndexById(fromColumn), fromIndex,
+                                            categoriesModel.getCategoryIndexById(toColumn), toIndex);
+              }
+              else
+              {
+                 visualModel.items.move(fromIndex, toIndex);
+                 tickets.moveTicketInternally(fromIndex, toIndex);
+              }
             }
         }
 

@@ -38,12 +38,13 @@ public:
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
 
     Q_INVOKABLE int getCategoryIndexByName(QString name) const;
-    Q_INVOKABLE int indexOfCategory(Category* category) const { return m_categories.indexOf(*category); }
+    Q_INVOKABLE int getCategoryIndexById(QString id) const;
+    Q_INVOKABLE int indexOfCategory(Category* category) const {return m_categories.indexOf(*category);}
     /* ------------------------ Tickets manipulation ------------------------ */
     Q_INVOKABLE void moveTicket(int fromCategory, int fromIndex, int toCategory, int toIndex);
-    Q_INVOKABLE void addTicket(int categoryIndex, Ticket tick) const;
+    Q_INVOKABLE void addTicket(int categoryIndex, Ticket* tick) const;
     Q_INVOKABLE void removeTicketByIndex(int categoryIndex, int index) const;
-    Q_INVOKABLE Ticket getTicketByIndex(int categoryIndex, int index) const;
+    Q_INVOKABLE Ticket* getTicketByIndex(int categoryIndex, int index) const;
     /* ------------------------ DEBUG STUFF ------------------------ */
     Q_INVOKABLE void populate();
     void displayNames();

@@ -38,8 +38,8 @@ int CategoriesModel::getCategoryIndexByName(QString name) const
     return -1;
 }
 
-
-void CategoriesModel::populate() {
+void CategoriesModel::populate()
+{
     for (int i = 0; i < 3; ++i) {
         QString categoryName = "Category " + QString::number(i + 1);
         QVariant categoryId  = i + 1;
@@ -56,19 +56,19 @@ void CategoriesModel::populate() {
             QDate endDate(2023, 5, j + 2);
             QVariant chat       = "Chat " + QString::number(j + 1);
             QString description = "Description of Ticket " + QString::number(j + 1);
-            Ticket *newTicket = new Ticket(ticketName, people, ticketId, priority, difficulty,
-                                           startDate, endDate, chat, description);
+            Ticket* newTicket   = new Ticket(ticketName, people, ticketId, priority, difficulty,
+                  startDate, endDate, chat, description);
             newCategory.getTickets()->append(newTicket);
         }
         this->append(newCategory);
     }
 }
-  
-int categoriesModel::getCategoryIndexById(QString id) const
+
+int CategoriesModel::getCategoryIndexById(QString id) const
 {
-    foreach(category cat, m_categories)
-    {
-        if(cat.getId().toString() == id) return m_categories.indexOf(cat);
+    foreach (Category cat, m_categories) {
+        if (cat.getId().toString() == id)
+            return m_categories.indexOf(cat);
     }
     return -1;
 }

@@ -21,7 +21,6 @@ ColumnLayout
         Text
         {
             id: title
-            Layout.preferredWidth: textMetrics.width + 32
             text: "Nothing interesting here"
             font.pixelSize: 24
             font.bold: true

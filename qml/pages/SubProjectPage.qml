@@ -8,7 +8,6 @@ import '../controls'
 Item
 {
     id: projectPage
-    anchors.fill: parent
 
     ColumnLayout
     {

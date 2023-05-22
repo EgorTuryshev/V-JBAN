@@ -73,7 +73,6 @@ ComboBox {
             elide: Text.ElideRight
 
             leftPadding: 10
-            rightPadding: indicatorIcon.width + leftPadding +10
             verticalAlignment: Text.AlignVCenter
         }
     }

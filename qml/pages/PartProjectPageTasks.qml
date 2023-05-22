@@ -26,7 +26,7 @@ Item
             tickets: model.tickets
             title: name
             categoryId: id
-            width: 300
+            width: 400
             anchors.bottom: parent.bottom
             anchors.top: parent.top
             anchors.topMargin: 20

@@ -108,8 +108,8 @@ Item
                     Text
                     {
                         id: header
-                        text: "Тест#1"
-                        font.pixelSize: 24
+                        text: "Тест #1"
+                        font.pixelSize: 20
                         font.family: "Segoe UI"
                         color:"#696969"
                         font.bold: true
@@ -164,10 +164,12 @@ Item
 
                     ControlTag
                     {
+                        fontSize: 14
                         text: "#high"
                     }
                     ControlTag
                     {
+                        fontSize: 14
                         text: "#large"
                     }
 

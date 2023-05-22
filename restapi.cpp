@@ -44,7 +44,7 @@ void RestAPI::sendLoginRequest(const QString& email, const QString& password)
         }
         else {
 //            sendRefreshTokenRequest();
-            emit errorReceived(jsonObject["error"].toString());
+            emit errorReceived(jsonObject["error_msg"].toString());
         }
         reply->deleteLater(); });
 }

@@ -46,7 +46,7 @@ Item
 
                 color: "#696969"
                 font.bold: true
-                font.pixelSize: 36
+                font.pixelSize: 24
                 font.family: "Segoe UI"
             }
 
@@ -56,6 +56,7 @@ Item
                 Layout.preferredHeight: 115
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
+                bgColor: "#EDEDED"
             }
 
             DelegateModel

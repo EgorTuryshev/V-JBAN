@@ -82,10 +82,14 @@ Item
                 Layout.alignment: Qt.AlignTop
                 ControlTag
                 {
+                    height: 25
+                    fontSize: 16
                     text: "#high"
                 }
                 ControlTag
                 {
+                    height: 25
+                    fontSize: 16
                     text: "#large"
                 }
             }

@@ -7,20 +7,22 @@ Item
     id: root
     function onClicked(){}
     property int plusSize: 50
+    property string bgColor
     Rectangle
     {
         anchors.fill: parent
         layer.enabled: true
         radius: 10
-        color: "#EDEDED"
+        color: bgColor
         layer.effect: DropShadow
         {
-            color: "grey"
+            color: "#e3e3e3"
+            opacity: 0.3
             transparentBorder: true
             samples: 40
             radius: 10
-            horizontalOffset: 0
-            verticalOffset: 0
+            horizontalOffset: 4
+            verticalOffset: 4
         }
         Image
         {

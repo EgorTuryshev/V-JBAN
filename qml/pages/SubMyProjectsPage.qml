@@ -7,43 +7,37 @@ Item
 {
     id: root
 
-    RowLayout
+    ColumnLayout
     {
-        id: topControls
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.topMargin: 5
+        anchors.fill: parent
+        spacing: 30
 
         ControlSearchField
         {
-            Layout.leftMargin: 5
-            Layout.preferredHeight: 30
-            Layout.preferredWidth: parent.width - 5
+            Layout.margins: 5
+            Layout.preferredHeight: 35
+            Layout.fillWidth: true
             onChanged: function filter() { projectSortModel.nameFilter = mainText; }
         }
-    }
 
-    ListView
-    {
-        clip: true
-        anchors.top: topControls.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.topMargin: 35
-        spacing: 30
-
-        model: projectSortModel
-        delegate: ModelControlProject
+        ListView
         {
-            titleText: model.title
-            descriptionText: model.description
-            numOfDoneTickets: 5; // Заглушка
-            numOfTickets: 10; // Заглушка
-            height: model.description === "" ? 100 : 170
-            width: parent.width - 10
-            anchors.horizontalCenter: parent.horizontalCenter
+            clip: true
+            spacing: 30
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            model: projectSortModel
+            delegate: ModelControlProject
+            {
+                titleText: model.title
+                descriptionText: model.description
+                numOfDoneTickets: 5; // Заглушка
+                numOfTickets: 10; // Заглушка
+                height: model.description === "" ? 100 : 170
+                width: parent.width - 10
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
         }
     }
 }

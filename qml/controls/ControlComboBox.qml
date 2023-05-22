@@ -56,8 +56,8 @@ ComboBox {
         color: "transparent"
         radius: 5
 
-        border.color: "#7a7a7a"
-        border.width: 1
+        border.color: "#D4D4D8"
+        border.width: 2
     }
 
     contentItem: Item {

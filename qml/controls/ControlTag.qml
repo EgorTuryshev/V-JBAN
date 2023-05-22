@@ -4,6 +4,7 @@ Item
 {
     id: root
     property alias text: tagText.text
+    property int fontSize
 
     width: textMetrics.width + textMetrics.width / 2
     height: 20
@@ -20,8 +21,8 @@ Item
             anchors.fill: parent
             horizontalAlignment: Qt.AlignHCenter
             verticalAlignment: Qt.AlignVCenter
-            text: "#NULL"
-            font.pixelSize: 14
+            text: "#null"
+            font.pixelSize: fontSize
             font.family: "Segoe UI"
             color: "white"
             font.bold: true

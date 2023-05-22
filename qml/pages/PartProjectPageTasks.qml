@@ -21,6 +21,7 @@ Item
     {
         id: rowLayout
         anchors.fill: parent
+        spacing: 20
         ListView
         {
             id: listView
@@ -44,10 +45,12 @@ Item
         ControlPlusPanel
         {
             id: addCategoryButton
-            Layout.preferredHeight: 50
-            Layout.preferredWidth: 50
+            Layout.fillHeight: true
+            Layout.preferredWidth: 100
+            Layout.topMargin: 20
             Layout.alignment: Qt.AlignTop
             plusSize: 20
+            bgColor: "#F9F9F9"
             visible: listView.contentX + listView.width >= listView.contentWidth - 10
         }
     }

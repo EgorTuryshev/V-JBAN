@@ -9,6 +9,7 @@ Item
 
     ColumnLayout {
         anchors.fill: parent
+        spacing: 30
 
         Rectangle {
             id: controlPanel
@@ -25,6 +26,7 @@ Item
                 {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+                    Layout.rightMargin: 30
                 }
 
                 Text

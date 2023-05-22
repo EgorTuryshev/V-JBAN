@@ -16,7 +16,6 @@ Window
     Loader {
         id: loader
         anchors.fill: parent
-        sourceComponent: LoginPage {
-        }
+        sourceComponent: LoginPage { }
     }
 }

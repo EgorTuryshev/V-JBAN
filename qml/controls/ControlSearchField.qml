@@ -4,7 +4,6 @@ import QtQuick.Controls 2.15
 Item
 {
     id: root
-    height: 20
     clip: true
 
     property alias phText: textField.placeholderText
@@ -24,26 +23,25 @@ Item
         {
             id: textField
 
-            background: Item
-            {
-                implicitHeight: parent.height
-                implicitWidth: parent.width
-                visible: false
-            }
+            topPadding: 5
+            bottomPadding: 5
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.right: searchIcon.right
             anchors.rightMargin: 25
-            font.pixelSize: 16
-            topPadding: 5
-            bottomPadding: 5
+
             color: "#71717A"
+            font.pixelSize: 16
             placeholderText: qsTr("")
             Material.accent: '#D4D4D8'
             Material.foreground: '#71717A'
-            onTextChanged: {
-                onChanged();
+
+            onTextChanged: onChanged();
+
+            background: Item
+            {
+                visible: false
             }
         }
 
@@ -53,7 +51,7 @@ Item
             anchors.right: parent.right
             width: 15
             height: width
-            source: "qrc:/res/search.svg"
+            source: "qrc:/res/search.png"
             anchors.rightMargin: 15
             anchors.verticalCenter: parent.verticalCenter
         }

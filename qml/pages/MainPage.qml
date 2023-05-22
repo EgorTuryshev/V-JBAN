@@ -75,21 +75,11 @@ Item
         anchors.topMargin: 35
         anchors.bottomMargin: 35
 
-        SubMyProjectsPage
-        {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
-        SubTicketsPage
-        {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
-        SubProjectPage
-        {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
+        SubMyProjectsPage { Layout.fillWidth: true; Layout.fillHeight: true }
+
+        SubTicketsPage { Layout.fillWidth: true; Layout.fillHeight: true }
+
+        SubProjectPage { Layout.fillWidth: true; Layout.fillHeight: true }
     }
 
 }

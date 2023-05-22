@@ -105,8 +105,7 @@ Item
                     anchors.rightMargin: 0
                     anchors.topMargin: 0
                     text: "Забыли пароль?"
-                    onClicked:
-                    {
+                    onClicked: {
                         root.parent.setSource("ForgotPasswordPage.qml");
                     }
                 }

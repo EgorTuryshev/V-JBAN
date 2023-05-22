@@ -1,14 +1,18 @@
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QDebug>
+
 #include "restapi.h"
 
-RestAPI::RestAPI(User* user, QObject *parent) : QObject(parent), m_user(user) {
+RestAPI::RestAPI(User* user, QObject* parent)
+    : QObject(parent), m_user(user)
+{
     networkManager = new QNetworkAccessManager(this);
 }
 
-QNetworkRequest RestAPI::createRequest(const QString& url) {
+QNetworkRequest RestAPI::createRequest(const QString& url)
+{
     QNetworkRequest request;
     request.setUrl(QUrl(url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -17,7 +21,8 @@ QNetworkRequest RestAPI::createRequest(const QString& url) {
     }
     return request;
 }
-void RestAPI::sendLoginRequest(const QString& email, const QString& password) {
+void RestAPI::sendLoginRequest(const QString& email, const QString& password)
+{
     QNetworkRequest request = createRequest("https://sgu-dev.ru/api/login");
 
     QJsonObject json;
@@ -28,7 +33,8 @@ void RestAPI::sendLoginRequest(const QString& email, const QString& password) {
     QByteArray data = doc.toJson();
 
     QNetworkReply* reply = networkManager->post(request, data);
-    connect(reply, &QNetworkReply::finished, [=]() {
+    connect(reply, &QNetworkReply::finished, [=]()
+        {
         QString strReply = reply->readAll();
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
         QJsonObject jsonObject = jsonResponse.object();
@@ -40,10 +46,10 @@ void RestAPI::sendLoginRequest(const QString& email, const QString& password) {
 //            sendRefreshTokenRequest();
             emit errorReceived(jsonObject["error"].toString());
         }
-        reply->deleteLater();
-    });
+        reply->deleteLater(); });
 }
-void RestAPI::sendRefreshTokenRequest() {
+void RestAPI::sendRefreshTokenRequest()
+{
     QNetworkRequest request = createRequest("https://sgu-dev.ru/api/refresh-token");
 
     QJsonObject json;
@@ -53,7 +59,8 @@ void RestAPI::sendRefreshTokenRequest() {
     QByteArray data = doc.toJson();
 
     QNetworkReply* reply = networkManager->post(request, data);
-    connect(reply, &QNetworkReply::finished, [=]() {
+    connect(reply, &QNetworkReply::finished, [=]()
+        {
         QString strReply = reply->readAll();
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
         QJsonObject jsonObject = jsonResponse.object();
@@ -61,17 +68,18 @@ void RestAPI::sendRefreshTokenRequest() {
             emit loginResponseReceived(jsonObject["accessToken"].toString(), jsonObject["refreshToken"].toString());
         }
         else {
-            emit errorReceived(jsonObject["error"].toString());
+            emit errorReceived(jsonObject["error_msg"].toString());
         }
-        reply->deleteLater();
-    });
+        reply->deleteLater(); });
 }
 
-void RestAPI::getProjects() {
-    QNetworkRequest request = createRequest("https://sgu-dev.ru/api/projects/user");
+void RestAPI::getProjects()
+{
+    QNetworkRequest request = createRequest("https://sgu-dev.ru/api/project/user");
 
-    QNetworkReply *reply = networkManager->get(request);
-    connect(reply, &QNetworkReply::finished, [=]() {
+    QNetworkReply* reply = networkManager->get(request);
+    connect(reply, &QNetworkReply::finished, [=]()
+        {
         if(reply->error() == QNetworkReply::NoError) {
             QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
             QJsonArray jsonArray = jsonResponse.array();
@@ -91,9 +99,7 @@ void RestAPI::getProjects() {
         } else {
             QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
             QJsonObject jsonObject = jsonResponse.object();
-            emit errorReceived(jsonObject["error"].toString());
+            emit errorReceived(jsonObject["error_msg"].toString());
         }
-        reply->deleteLater();
-    });
+        reply->deleteLater(); });
 }
-

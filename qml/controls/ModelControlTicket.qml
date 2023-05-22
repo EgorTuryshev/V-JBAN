@@ -12,7 +12,8 @@ Item
     property var toIndex
 
     width: 300
-    height: 100
+    height: 115
+
     MouseArea
     {
         id: mouseArea
@@ -31,25 +32,24 @@ Item
             id: dropArea
             anchors.fill: parent
 
-            onEntered: (drag) =>
-                       {
-                           fromIndex = drag.source.DelegateModel.itemsIndex;
-                           toIndex = mouseArea.DelegateModel.itemsIndex;
-                           var fromColumn = drag.source.DelegateModel.groups[1];
-                           var toColumn = mouseArea.DelegateModel.groups[1];
+            onEntered: (drag) => {
+              fromIndex = drag.source.DelegateModel.itemsIndex;
+              toIndex = mouseArea.DelegateModel.itemsIndex;
+              var fromColumn = drag.source.DelegateModel.groups[1];
+              var toColumn = mouseArea.DelegateModel.groups[1];
 
-                           if (fromColumn !== toColumn)
-                           {
-                               // add space element here, on Release add in model
-                               categoriesModel.moveTicket(categoriesModel.getCategoryIndexById(fromColumn), fromIndex,
-                                                          categoriesModel.getCategoryIndexById(toColumn), toIndex);
-                           }
-                           else
-                           {
-                               visualModel.items.move(fromIndex, toIndex);
-                               tickets.moveTicketInternally(fromIndex, toIndex);
-                           }
-                       }
+              if (fromColumn !== toColumn)
+              {
+                 // add space element here, on Release add in model
+                 categoriesModel.moveTicket(categoriesModel.getCategoryIndexById(fromColumn), fromIndex,
+                                            categoriesModel.getCategoryIndexById(toColumn), toIndex);
+              }
+              else
+              {
+                 visualModel.items.move(fromIndex, toIndex);
+                 tickets.moveTicketInternally(fromIndex, toIndex);
+              }
+            }
         }
 
         Rectangle
@@ -61,15 +61,18 @@ Item
             radius: 15
             clip: true
             color: mouseArea.held ? "lightsteelblue" : "#EDEDED"
+
             layer.effect: DropShadow
             {
-                color:"grey"
+                color: "#e3e3e3"
+                opacity: 0.3
                 transparentBorder: true
                 samples: 40
                 radius: 10
-                horizontalOffset: 0
-                verticalOffset: 0
+                horizontalOffset: 4
+                verticalOffset: 4
             }
+
             Behavior on color { ColorAnimation { duration: 100 } }
             Drag.active: mouseArea.held
             Drag.source: mouseArea
@@ -94,11 +97,14 @@ Item
             ColumnLayout
             {
                 anchors.fill: parent
+                anchors.margins: 10
+                spacing: 10
+
                 RowLayout
                 {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 30
-                    Layout.leftMargin: 10
+
                     Text
                     {
                         id: header
@@ -108,11 +114,13 @@ Item
                         color:"#696969"
                         font.bold: true
                     }
+
                     ControlEditButton
                     {
                         Layout.preferredWidth: 15
                         Layout.preferredHeight: 15
                     }
+
                     Item
                     {
                         Layout.fillWidth: true
@@ -123,14 +131,37 @@ Item
                         Layout.preferredWidth: 15
                         Layout.preferredHeight: 15
                         Layout.rightMargin: 10
+
+                        Menu {
+                            id: menu
+
+                            MenuItem {
+                                text: "Подробнее"
+                                onTriggered: {
+                                    // Действие при выборе "Подробнее"
+                                    console.log("Подробнее selected")
+                                }
+                            }
+
+                            MenuItem {
+                                text: "Удалить"
+                                onTriggered: {
+                                    // Действие при выборе "Удалить"
+                                    console.log("Удалить selected")
+                                }
+                            }
+                        }
+
+                        function onClicked() {
+                            menu.open()
+                        }
                     }
                 }
+
                 RowLayout
                 {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 20
-                    Layout.leftMargin: 10
-                    Layout.bottomMargin: 15
+
                     ControlTag
                     {
                         text: "#high"
@@ -141,13 +172,13 @@ Item
                     }
 
                 }
+
                 RowLayout
                 {
                     id: thirdRow
                     Layout.fillWidth: true
                     Layout.preferredHeight: 35
-                    Layout.leftMargin: 10
-                    Layout.bottomMargin: 5
+
                     Flickable
                     {
                         id: flickable
@@ -162,28 +193,26 @@ Item
                         {
                             policy: ScrollBar.AlwaysOn
                             size: flickable.width
-                            height: 10
+                            height: 8
                             width: thirdRow.width
                             visible: flickable.contentWidth > flickable.width
                         }
+
                         RowLayout
                         {
                             id: rowLayout
-                            height: 20
+
                             ControlAvatar
                             {
-                                width: 20
+                                size: 25
                             }
                             ControlAvatar
                             {
-                                width: 20
+                                size: 25
                             }
                         }
                     }
-                    Item
-                    {
-                        Layout.fillWidth: true
-                    }
+
                     ControlTimer
                     {
                         Layout.fillHeight: true

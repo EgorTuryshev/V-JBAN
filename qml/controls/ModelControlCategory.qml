@@ -28,24 +28,6 @@ Item
             horizontalOffset: 4
             verticalOffset: 4
         }
-
-        DropArea
-        {
-            anchors.fill: parent
-
-            onDropped:
-            {
-//                console.log("DROPPED");
-            }
-            onEntered:
-            {
-//                console.log(drag.source.DelegateModel.itemsIndex);
-            }
-            onExited:
-            {
-//                console.log(drag.source.DelegateModel.itemsIndex - 1);
-            }
-        }
         ColumnLayout
         {
             id: column
@@ -66,6 +48,14 @@ Item
                 font.bold: true
                 font.pixelSize: 36
                 font.family: "Segoe UI"
+            }
+
+            ControlPlusPanel
+            {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 115
+                Layout.leftMargin: 10
+                Layout.rightMargin: 10
             }
 
             DelegateModel

@@ -22,9 +22,5 @@
         <file>qml/pages/ForgotPasswordPage.qml</file>
         <file>qml/pages/ForgotPasswordCompletePage.qml</file>
         <file>res/button.png</file>
-        <file>qml/pages/PartProjectPageTasks.qml</file>
-        <file>qml/pages/PartProjectPageInfo.qml</file>
-        <file>qml/controls/ControlTextArea.qml</file>
-        <file>qml/controls/ControlDescriptionBox.qml</file>
     </qresource>
 </RCC>

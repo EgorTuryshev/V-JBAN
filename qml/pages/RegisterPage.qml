@@ -62,35 +62,37 @@ Item
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: parent.width - 170
-                placeholderText: "Введите адрес электронной почты<font color=\"#D72F2F\">*</font>"
+                placeholderText: "Введите адрес электронной почты<font color=\"#D72F2F\"> *</font>"
             }
             ControlEdit
             {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: parent.width - 170
-                placeholderText: "Введите Ваше имя<font color=\"#D72F2F\">*</font>"
+                placeholderText: "Введите Ваше имя<font color=\"#D72F2F\"> *</font>"
             }
             ControlEdit
             {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: parent.width - 170
-                placeholderText: "Введите Вашу фамилию<font color=\"#D72F2F\">*</font>"
+                placeholderText: "Введите Вашу фамилию<font color=\"#D72F2F\"> *</font>"
             }
             ControlEdit
             {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: parent.width - 170
-                placeholderText: "Введите пароль<font color=\"#D72F2F\">*</font>"
+                placeholderText: "Введите пароль<font color=\"#D72F2F\"> *</font>"
+                echoMode: TextInput.Password
             }
             ControlEdit
             {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: parent.width - 170
-                placeholderText: "Подтвердите пароль<font color=\"#D72F2F\">*</font>"
+                placeholderText: "Подтвердите пароль<font color=\"#D72F2F\"> *</font>"
+                echoMode: TextInput.Password
 
             }
             ControlButton
@@ -110,7 +112,7 @@ Item
                 text: "Уже есть аккаунт? Войдите!"
                 onClicked:
                 {
-
+                    root.parent.setSource("LoginPage.qml");
                 }
             }
         }

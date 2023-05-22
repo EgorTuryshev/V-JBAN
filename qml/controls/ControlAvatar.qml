@@ -3,7 +3,12 @@ import QtQuick 2.15
 Item
 {
     id: root
-    height: width
+
+    property int size: 20
+
+    width: size
+    height: size
+
     Rectangle
     {
         id: imgRect

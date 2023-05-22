@@ -15,4 +15,3 @@ void ProjectSortModel::updateFilter()
     invalidateFilter();
     emit filterChanged();
 }
-

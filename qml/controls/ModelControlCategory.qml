@@ -16,15 +16,18 @@ Item
         layer.enabled: true
         radius: 10
         color: "#F9F9F9"
+
         layer.effect: DropShadow
         {
-            color: "grey"
+            color: "#e3e3e3"
+            opacity: 0.3
             transparentBorder: true
             samples: 40
             radius: 10
-            horizontalOffset: 0
-            verticalOffset: 0
+            horizontalOffset: 4
+            verticalOffset: 4
         }
+
         DropArea
         {
             anchors.fill: parent
@@ -42,7 +45,7 @@ Item
 //                console.log(drag.source.DelegateModel.itemsIndex - 1);
             }
         }
-        Column
+        ColumnLayout
         {
             id: column
             anchors.fill: parent
@@ -52,14 +55,16 @@ Item
             Text
             {
                 id: title
-                anchors.left: parent.left
-                anchors.leftMargin: 10
                 text: "Category Title"
+
+                height: 30
+                Layout.fillWidth: true
+                Layout.leftMargin: 10
+
+                color: "#696969"
                 font.bold: true
                 font.pixelSize: 36
                 font.family: "Segoe UI"
-                height: 30
-                color: "#696969"
             }
 
             DelegateModel
@@ -81,10 +86,10 @@ Item
             ListView
             {
                 id: ticketList
-                anchors.fill: parent
+                Layout.fillWidth: true
+                Layout.fillHeight: true
                 highlightMoveVelocity: -1
                 highlightMoveDuration: 1000
-                anchors.topMargin: title.height + parent.spacing + 10
                 clip: true
                 spacing: 10
                 model: visualModel

@@ -4,26 +4,24 @@
 
 #include "qdatetime.h"
 #include <QObject>
-#include <QVariant>
 #include <QStringListModel>
+#include <QVariant>
 
-class ticket
+class Ticket
 {
 public:
-    ticket(const QString& name, const QStringList& people,
-             const QVariant& id, const QVariant& priority,
-             const QVariant& difficulty, const QDate& startDate,
-             const QDate& endDate, const QVariant& chat,
-             const QString& description);
-    QString getName() const {return m_name;};
-    QVariant getId() const {return m_id;};
-    QStringList getPeople() const{return m_people;};
-    QVariant getPriority() const {return m_priority;};
-    QVariant getDifficulty() const {return m_difficulty;};
-    QDate getStartDate() const {return m_startDate;};
-    QDate getEndDate() const {return m_endDate;};
-    QVariant getChat() const {return m_chat;};
-    QVariant getDescription() const {return m_description;};
+    Ticket(const QString& name, const QStringList& people, const QVariant& id, const QVariant& priority,
+        const QVariant& difficulty, const QDate& startDate, const QDate& endDate, const QVariant& chat, const QString& description);
+
+    QString getName() const { return m_name; };
+    QVariant getId() const { return m_id; };
+    QStringList getPeople() const { return m_people; };
+    QVariant getPriority() const { return m_priority; };
+    QVariant getDifficulty() const { return m_difficulty; };
+    QDate getStartDate() const { return m_startDate; };
+    QDate getEndDate() const { return m_endDate; };
+    QVariant getChat() const { return m_chat; };
+    QVariant getDescription() const { return m_description; };
 
 private:
     QString m_name;

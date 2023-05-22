@@ -2,18 +2,20 @@
 #ifndef RESTAPI_H
 #define RESTAPI_H
 
-#include <QString>
 #include <QNetworkAccessManager>
-#include <QNetworkRequest>
 #include <QNetworkReply>
-#include "user.h"
-#include "project.h"
+#include <QNetworkRequest>
+#include <QString>
 
-class RestAPI : public QObject {
+#include "project.h"
+#include "user.h"
+
+class RestAPI : public QObject
+{
     Q_OBJECT
 
 public:
-    explicit RestAPI(User* user, QObject *parent = nullptr);
+    explicit RestAPI(User* user, QObject* parent = nullptr);
     Q_INVOKABLE void sendLoginRequest(const QString& email, const QString& password);
     Q_INVOKABLE void sendRefreshTokenRequest();
     Q_INVOKABLE void getProjects();
@@ -30,7 +32,5 @@ private:
 
     QNetworkRequest createRequest(const QString& url);
 };
-
-
 
 #endif // RESTAPI_H

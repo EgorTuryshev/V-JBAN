@@ -6,8 +6,7 @@ import '../controls'
 Item
 {
     id: projectPage
-    anchors.fill: parent
-    clip: true
+
     CategoriesModel
     {
         id: categoriesModel
@@ -28,7 +27,7 @@ Item
         {
             tickets: model.tickets
             title: name
-            width: 300
+            width: 400
             anchors.bottom: parent.bottom
             anchors.top: parent.top
             anchors.topMargin: 20

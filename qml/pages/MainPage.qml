@@ -34,49 +34,28 @@ Item
             anchors.leftMargin: parent.width * 0.1 + 5
             anchors.rightMargin: parent.width * 0.1 + 5
             spacing: 30
-            ControlMenuButton
-            {
-                id: projectMenuButton
-                isActive: true
-                text: "Проекты"
-                height: menuBar.height
 
-                onClicked:
-                {
-                    router.currentIndex = 0
-                    isActive = true
-                    myTicketsMenuButton.isActive = false
-                    currProjectMenuButton.isActive = false
-                }
+            ButtonGroup {
+                id: topMenuBtnGroup
+                exclusive: true
             }
-            ControlMenuButton
-            {
-                id: myTicketsMenuButton
-                isActive: projectMenuButton.isActive || currProjectMenuButton.isActive ? false : true
-                text: "Мои задачи"
-                height: menuBar.height
 
-                onClicked:
-                {
-                    router.currentIndex = 1
-                    isActive = true
-                    projectMenuButton.isActive = false
-                    currProjectMenuButton.isActive = false
+            Repeater {
+                id: menuItems
+
+                Component.onCompleted: menuItems.itemAt(0).checked = true
+
+                model: ListModel {
+                    ListElement { name: 'Проекты' }
+                    ListElement { name: 'Мои задачи' }
+                    ListElement { name: 'Текущий проект' }
                 }
-            }
-            ControlMenuButton
-            {
-                id: currProjectMenuButton
-                isActive: projectMenuButton.isActive || myTicketsMenuButton.isActive ? false : true
-                text: "Текущий проект"
-                height: menuBar.height
 
-                onClicked:
-                {
-                    router.currentIndex = 2
-                    isActive = true
-                    projectMenuButton.isActive = false
-                    myTicketsMenuButton.isActive = false
+                delegate: ControlMenuButton {
+                    text: name
+                    ButtonGroup.group: topMenuBtnGroup
+
+                    onClicked: router.currentIndex = index
                 }
             }
         }
@@ -84,26 +63,22 @@ Item
     StackLayout
     {
         id: router
-        anchors.leftMargin: parent.width * 0.1
-        anchors.rightMargin: parent.width * 0.1
-        anchors.topMargin: 35
-        anchors.bottomMargin: 35
+        currentIndex: 0
+
         anchors.top: menuBar.bottom
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        currentIndex: 0
-        SubMyProjectsPage
-        {
 
-        }
-        SubTicketsPage
-        {
+        anchors.leftMargin: parent.width * 0.1
+        anchors.rightMargin: parent.width * 0.1
+        anchors.topMargin: 35
+        anchors.bottomMargin: 35
 
-        }
-        SubProjectPage
-        {
+        SubMyProjectsPage { Layout.fillWidth: true; Layout.fillHeight: true }
 
-        }
+        SubTicketsPage { Layout.fillWidth: true; Layout.fillHeight: true }
+
+        SubProjectPage { Layout.fillWidth: true; Layout.fillHeight: true }
     }
 }

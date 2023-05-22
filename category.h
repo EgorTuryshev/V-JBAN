@@ -5,26 +5,27 @@
 #include <QObject>
 #include <QVariant>
 
-#include "ticketsModel.h"
+#include "ticketsmodel.h"
 
-class category
+class Category
 {
 public:
-    category(const QString& name, ticketsModel* tickets,
-             const QVariant& id, const QVariant& isFinish);
-    QString getName() const {return m_name;};
-    ticketsModel * getTickets() const {return m_tickets;};
-    QVariant getId() const {return m_id;};
-    QVariant getIsFinish() const {return m_isFinish;};
-    bool operator == (const category& cat) const
+    Category(const QString& name, TicketsModel* tickets,
+        const QVariant& id, const QVariant& isFinish);
+    QString getName() const { return m_name; };
+    TicketsModel* getTickets() const { return m_tickets; };
+    QVariant getId() const { return m_id; };
+    QVariant getIsFinish() const { return m_isFinish; };
+    bool operator==(const Category& cat) const
     {
         return this->getId() == cat.getId();
     }
-    void addTicket(ticket tick) const;
+    void addTicket(Ticket tick) const;
     void removeTicketAt(int index) const;
+
 private:
     QString m_name;
-    ticketsModel * m_tickets;
+    TicketsModel* m_tickets;
     QVariant m_id;
     QVariant m_isFinish;
 };

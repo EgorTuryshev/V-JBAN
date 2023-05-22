@@ -12,7 +12,8 @@ class ProjectSortModel : public QSortFilterProxyModel
     Q_PROPERTY(QString nameFilter READ nameFilter WRITE setNameFilter NOTIFY filterChanged)
 
 public:
-    explicit ProjectSortModel(QObject* parent = nullptr) : QSortFilterProxyModel(parent) {};
+    explicit ProjectSortModel(QObject* parent = nullptr)
+        : QSortFilterProxyModel(parent) {};
 
     QString nameFilter() const
     {

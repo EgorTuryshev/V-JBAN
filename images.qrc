@@ -7,5 +7,6 @@
         <file>res/more.png</file>
         <file>res/button.png</file>
         <file>res/search.png</file>
+        <file>qml/controls/ControlPeopleLable.qml</file>
     </qresource>
 </RCC>

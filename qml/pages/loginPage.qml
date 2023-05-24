@@ -135,6 +135,10 @@ Item
                     restAPI.sendLoginRequest(emailText.text, passwordText.text);
                 }
             }
+            TicketDetailsPage{
+                id:ticketDetails
+            }
+
             ControlButton
             {
                 Layout.alignment: Qt.AlignHCenter
@@ -147,9 +151,11 @@ Item
                 Material.background: "#D72F2F"
                 onClicked:
                 {
-                    errorMessage = "";
-                    errorText.visible = false;
-                    restAPI.sendLoginRequest("johndoe@example.com", "123");
+
+                    ticketDetails.open();
+//                    errorMessage = "";
+//                    errorText.visible = false;
+//                    restAPI.sendLoginRequest("johndoe@example.com", "123");
                 }
             }
             ControlTextButton

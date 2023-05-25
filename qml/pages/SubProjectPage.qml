@@ -8,43 +8,45 @@ import '../controls'
 Item
 {
     id: projectPage
+    property alias currLoaderIndex: router.currentIndex
 
     ColumnLayout
     {
-       anchors.fill: parent
-       RowLayout
-       {
-           Layout.fillWidth: true
-           spacing: 30
+        anchors.fill: parent
+        RowLayout
+        {
+            Layout.fillWidth: true
+            spacing: 30
 
-           ButtonGroup
-           {
-               id: subMenuBtnGroup
-               exclusive: true
-           }
+            ButtonGroup
+            {
+                id: subMenuBtnGroup
+                exclusive: true
+            }
 
-           Repeater
-           {
-               id: menuItems
+            Repeater
+            {
+                id: menuItems
 
-               Component.onCompleted: menuItems.itemAt(0).checked = true
+                Component.onCompleted: menuItems.itemAt(0).checked = true
 
-               model: ListModel
-               {
-                   ListElement { name: 'Задачи' }
-                   ListElement { name: 'Информация о проекте' }
-               }
+                model: ListModel
+                {
+                    ListElement { name: 'Задачи' }
+                    ListElement { name: 'Информация о проекте' }
+                    ListElement { name: 'Чат проекта' }
+                }
 
-               delegate: ControlMenuButton
-               {
-                   text: name
-                   font.pixelSize: 24
-                   font.bold: true
-                   ButtonGroup.group: subMenuBtnGroup
-                   onClicked: router.currentIndex = index;
-               }
-           }
-       }
+                delegate: ControlMenuButton
+                {
+                    text: name
+                    font.pixelSize: 24
+                    font.bold: true
+                    ButtonGroup.group: subMenuBtnGroup
+                    onClicked: router.currentIndex = index;
+                }
+            }
+        }
         Loader
         {
             id: router
@@ -54,7 +56,21 @@ Item
             sourceComponent: PartProjectPageTasks { }
             onCurrentIndexChanged:
             {
-                currentIndex === 0 ? setSource("PartProjectPageTasks.qml") : setSource("PartProjectPageInfo.qml");
+                if (currentIndex == 0)
+                {
+                    setSource("PartProjectPageTasks.qml");
+                    menuItems.itemAt(0).checked = true;
+                }
+                else if (currentIndex == 1)
+                {
+                    setSource("PartProjectPageInfo.qml");
+                    menuItems.itemAt(1).checked = true;
+                }
+                else
+                {
+                    setSource("PartProjectPageChat.qml");
+                    menuItems.itemAt(2).checked = true;
+                }
             }
         }
     }

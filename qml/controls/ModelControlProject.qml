@@ -10,6 +10,7 @@ Item
     property string descriptionText
     property int numOfDoneTickets: 3
     property int numOfTickets: 10
+    property var onChatBtnClicked
 
     Rectangle
     {
@@ -54,6 +55,14 @@ Item
                 {
                     Layout.preferredWidth: 15
                     Layout.preferredHeight: 15
+                }
+                ControlChatButton
+                {
+                    Layout.leftMargin: 20
+                    font.pixelSize: 16
+                    onClicked: {
+                        root.onChatBtnClicked();
+                    }
                 }
                 Item
                 {

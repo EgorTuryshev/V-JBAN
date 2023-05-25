@@ -6,6 +6,10 @@ import '../controls'
 Item
 {
     id: root
+    function onChatBtnClicked(id)
+    {
+        console.log(id)
+    }
 
     ColumnLayout
     {
@@ -30,11 +34,15 @@ Item
             model: projectSortModel
             delegate: ModelControlProject
             {
-                titleText: model.title
-                descriptionText: model.description
+                onChatBtnClicked: function onChatBtnClicked() {
+                    root.parent.currentIndex = 2;
+                    root.parent.children[2].currLoaderIndex = 2; // TO-DO: это похоже на костыль
+                }
+                titleText: title
+                descriptionText: description
                 numOfDoneTickets: 5; // Заглушка
                 numOfTickets: 10; // Заглушка
-                height: model.description === "" ? 100 : 170
+                height: description === "" ? 100 : 170
                 width: parent.width - 10
                 anchors.horizontalCenter: parent.horizontalCenter
             }

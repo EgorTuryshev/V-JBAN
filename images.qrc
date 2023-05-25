@@ -7,5 +7,9 @@
         <file>res/more.png</file>
         <file>res/button.png</file>
         <file>res/search.png</file>
+        <file>res/chat.svg</file>
+        <file>qml/controls/ControlChatButton.qml</file>
+        <file>qml/pages/PartProjectPageChat.qml</file>
+        <file>qml/controls/ModelControlMessage.qml</file>
     </qresource>
 </RCC>

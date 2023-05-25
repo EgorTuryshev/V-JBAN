@@ -3,7 +3,7 @@ import QtQuick 2.15
 Item
 {
     id: root
-    function onClicked(){console.log("clicked")}
+    function onClicked() {console.log("clicked")}
 
     Image
     {
@@ -14,6 +14,7 @@ Item
         {
             id: mouseArea
             anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
             onClicked:
             {
                 root.onClicked();

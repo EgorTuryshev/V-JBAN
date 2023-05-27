@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import Qt5Compat.GraphicalEffects
+import Qt.labs.qmlmodels
 import MyApp
 
 Item
@@ -9,7 +10,7 @@ Item
 
     property alias title: title.text
     property string categoryId
-    property alias tickets: visualModel.model
+    property alias tickets: ticketList.model
 
     Rectangle
     {
@@ -58,23 +59,6 @@ Item
                 Layout.rightMargin: 10
                 bgColor: "#EDEDED"
             }
-
-            DelegateModel
-            {
-                id: visualModel
-                groups: [DelegateModelGroup
-                {
-                    name: category.categoryId
-                    includeByDefault: true
-                }]
-                delegate: ModelControlTicket
-                {
-                    header: name
-                    width: parent.width - 20
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-            }
-
             ListView
             {
                 id: ticketList
@@ -84,7 +68,61 @@ Item
                 highlightMoveDuration: 1000
                 clip: true
                 spacing: 10
-                model: visualModel
+
+                delegate: Item
+                {
+                    id: delegateItem
+                    width: ticketList.width
+                    height: childrenRect.height
+
+                    ControlPlaceBar
+                    {
+                        id: ticketRectangle
+                        color: "blue"
+                        index: model.index
+                        categoryId: category.categoryId
+                        width: parent.width - 20
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        //opacity: index > 0 ? 0 : 1
+                    }
+
+                    ModelControlTicket
+                    {
+                        id: ticketDelegate
+                        header: name
+                        index: model.index
+                        categoryId: category.categoryId
+                        width: parent.width - 20
+                        anchors.top: ticketRectangle.bottom
+                        anchors.topMargin: 10
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+
+                    Loader
+                    {
+                        sourceComponent: ticketDelegate
+                    }
+                }
+                footer:
+                    Item {
+                        width: ticketList.width
+                        height: ticketRectangleBottom.height + 10
+                        ControlPlaceBar
+                        {
+                            id: ticketRectangleBottom
+                            color: "blue"
+                            index: -1
+                            categoryId: category.categoryId
+                            width: parent.width - 20
+                            anchors
+                            {
+                                top: parent.top
+                                topMargin: 10
+                                horizontalCenter: parent.horizontalCenter
+                            }
+                            //opacity: index > 0 ? 0 : 1
+                        }
+                }
             }
         }
     }

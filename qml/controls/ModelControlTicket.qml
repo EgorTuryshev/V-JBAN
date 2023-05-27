@@ -8,48 +8,26 @@ Item
     id: root
 
     property alias header: header.text
-    property var fromIndex
-    property var toIndex
+
+    property int index
+    property int categoryId
 
     width: 300
     height: 115
 
     MouseArea
     {
+
         id: mouseArea
         property bool held: false
         anchors.fill: parent
-
         drag.target: held ? ticketRect : undefined
         onPressAndHold: held = true
         onReleased:
         {
             held = false;
-        }
-
-        DropArea
-        {
-            id: dropArea
-            anchors.fill: parent
-
-            onEntered: (drag) => {
-              fromIndex = drag.source.DelegateModel.itemsIndex;
-              toIndex = mouseArea.DelegateModel.itemsIndex;
-              var fromColumn = drag.source.DelegateModel.groups[1];
-              var toColumn = mouseArea.DelegateModel.groups[1];
-
-              if (fromColumn !== toColumn)
-              {
-                 // add space element here, on Release add in model
-                 categoriesModel.moveTicket(categoriesModel.getCategoryIndexById(fromColumn), fromIndex,
-                                            categoriesModel.getCategoryIndexById(toColumn), toIndex);
-              }
-              else
-              {
-                 visualModel.items.move(fromIndex, toIndex);
-                 tickets.moveTicketInternally(fromIndex, toIndex);
-              }
-            }
+            //отправка по последнему общему индексу
+            categoriesModel.moveTicketToLastRegisteredPos();
         }
 
         Rectangle

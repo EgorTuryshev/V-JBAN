@@ -46,31 +46,37 @@ bool TicketsModel::setData(const QModelIndex& index, const QVariant& value, int 
 
 void TicketsModel::insertTicketInto(Ticket* tick, int position)
 {
-    m_tickets.insert(position, tick);
+    qDebug() << "INSERTION POSITION: " << position;
+    if(position >= m_tickets.size() - 1)
+    {
+        m_tickets.append(tick);
+    }
+    else
+    {
+        if(position <= 0)
+        {
+            m_tickets.push_front(tick);
+        }
+        else
+        {
+            m_tickets.insert(position, tick);
+        }
+    }
 }
 
 void TicketsModel::moveTicketInternally(int fromIndex, int toIndex)
 {
-    if (fromIndex < 0 || fromIndex >= m_tickets.size() || toIndex < 0 || toIndex >= m_tickets.size()) {
-        // qDebug() << "Недопустимые индексы.";
-        return;
-    }
-
-    if (fromIndex == toIndex) {
-        // qDebug() << "Начальный и конечный индексы совпадают.";
-        return;
-    }
-
+    toIndex += 1;
+    qDebug() << "INTERNAL MOVEMENT TRIGGERED BY INDEXES(FROM->TO): " << fromIndex << "->" << toIndex;
     Ticket* item = m_tickets.takeAt(fromIndex);
     insertTicketInto(item, toIndex);
-
-    /*QModelIndex fromModelIndex = createIndex(fromIndex, 0);
+    //Strange behaviour if not first-last case
+    QModelIndex fromModelIndex = createIndex(fromIndex, 0);
     QModelIndex toModelIndex = createIndex(toIndex, 0);
-    emit dataChanged(fromModelIndex, fromModelIndex);
-    emit dataChanged(toModelIndex, toModelIndex);
-    emit modelChanged();*/
-    qDebug() << "Элемент перемещен.";
-    displayNames();
+    /*emit dataChanged(fromModelIndex, fromModelIndex);
+    emit dataChanged(toModelIndex, toModelIndex);*/
+    beginResetModel();
+    endResetModel();
 }
 
 void TicketsModel::displayDebugInfo()

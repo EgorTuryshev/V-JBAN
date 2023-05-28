@@ -75,10 +75,18 @@ int CategoriesModel::getCategoryIndexById(int id) const
 
 void CategoriesModel::moveTicketToLastRegisteredPos()
 {
-    if (m_toIndex == -1) {
-        m_toIndex = m_categories.at(m_fromCategory).getTickets()->rowCount();
+    int fromCategory = getCategoryIndexById(m_fromCategory);
+    int toCategory   = getCategoryIndexById(m_toCategory);
+    qDebug() << "FROMCAT" << fromCategory;
+    qDebug() << "TOCAT" << toCategory;
+    if(fromCategory != -1 && toCategory != -1)
+    {
+        if (m_toIndex == -1) {
+            m_toIndex = m_categories.at(toCategory).getTickets()->rowCount();
+            qDebug() << "MOVING TO LAST POSITION ATTEMPT BY INDEX: " << m_toIndex;
+        }
+        moveTicket(fromCategory, m_fromIndex, toCategory, m_toIndex - 1);
     }
-    moveTicket(m_fromCategory, m_fromIndex, m_toCategory, m_toIndex - 1);
 }
 
 void CategoriesModel::registerPos(int fromCategory, int fromIndex, int toCategory, int toIndex)
@@ -176,21 +184,18 @@ void CategoriesModel::updateFromServer()
 
 void CategoriesModel::moveTicket(int fromCategory, int fromIndex, int toCategory, int toIndex)
 {
-    fromCategory = getCategoryIndexById(fromCategory);
-    toCategory   = getCategoryIndexById(toCategory);
     Ticket* tick = getTicketByIndex(fromCategory, fromIndex);
     if (fromCategory == toCategory) {
         m_categories.at(toCategory).getTickets()->moveTicketInternally(fromIndex, toIndex);
     } else {
         m_categories.at(toCategory).getTickets()->insertTicketInto(tick, toIndex);
         removeTicketByIndex(fromCategory, fromIndex);
+        QModelIndex fromModelIndex = createIndex(fromCategory, 0);
+        QModelIndex toModelIndex   = createIndex(toCategory, 0);
+        emit dataChanged(fromModelIndex, fromModelIndex);
+        emit dataChanged(toModelIndex, toModelIndex);
     }
-
-    QModelIndex fromModelIndex = createIndex(fromCategory, 0);
-    QModelIndex toModelIndex   = createIndex(toCategory, 0);
-    /*emit dataChanged(fromModelIndex, fromModelIndex);
-    emit dataChanged(toModelIndex, toModelIndex);
-    emit modelChanged();*/
+    emit modelChanged();
     beginResetModel();
     endResetModel();
 }

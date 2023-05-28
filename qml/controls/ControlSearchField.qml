@@ -51,7 +51,7 @@ Item
             anchors.right: parent.right
             width: 15
             height: width
-            source: "qrc:/res/search.png"
+            source: "qrc:/search.svg"
             anchors.rightMargin: 15
             anchors.verticalCenter: parent.verticalCenter
         }

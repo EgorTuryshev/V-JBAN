@@ -8,6 +8,7 @@ RowLayout
     property alias text: textArea.text
     property alias fontPixelSize: textArea.font.pixelSize
     property alias fontBold: textArea.font.bold
+
     TextArea
     {
         id: textArea
@@ -19,15 +20,18 @@ RowLayout
         Material.accent: '#2563EB'
         Material.foreground: '#71717A'
         wrapMode: TextEdit.NoWrap
+
         background: Item
         {
             width: textMetrics.width + 32
             implicitHeight: textMetrics.height + textArea.font.pixelSize
         }
+
         onEditingFinished:
         {
             readOnly = true;
         }
+
         onReadOnlyChanged:
         {
             if(readOnly === false)
@@ -36,6 +40,7 @@ RowLayout
                 forceActiveFocus();
             }
         }
+
         onLineCountChanged:
         {
             text = text.replace(/[\r\n]+/gm, "");
@@ -43,18 +48,17 @@ RowLayout
             deselect();
         }
     }
+
     Image
     {
-        source: "qrc:/res/edit.png"
+        source: "qrc:/edit.svg"
         MouseArea
         {
             anchors.fill: parent
-            onClicked:
-            {
-                textArea.readOnly = false;
-            }
+            onClicked: textArea.readOnly = false;
         }
     }
+
     TextMetrics
     {
         id: textMetrics

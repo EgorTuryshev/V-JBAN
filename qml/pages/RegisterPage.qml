@@ -35,10 +35,9 @@ Item
             RowLayout
             {
                 Layout.alignment: Qt.AlignHCenter
-                Image
-                {
-                    source: 'qrc:/res/logo.png'
-                }
+
+                Image { source: 'qrc:/logo.svg' }
+
                 Text
                 {
                     text: qsTr("V-JBAN")
@@ -48,6 +47,7 @@ Item
                     color: "#404040"
                 }
             }
+
             Text
             {
                 Layout.alignment: Qt.AlignHCenter
@@ -57,6 +57,7 @@ Item
                 font.bold: true
                 color: "#404040"
             }
+
             ControlEdit
             {
                 Layout.alignment: Qt.AlignHCenter
@@ -64,6 +65,7 @@ Item
                 Layout.preferredWidth: parent.width - 170
                 placeholderText: "Введите адрес электронной почты<font color=\"#D72F2F\"> *</font>"
             }
+
             ControlEdit
             {
                 Layout.alignment: Qt.AlignHCenter
@@ -71,6 +73,7 @@ Item
                 Layout.preferredWidth: parent.width - 170
                 placeholderText: "Введите Ваше имя<font color=\"#D72F2F\"> *</font>"
             }
+
             ControlEdit
             {
                 Layout.alignment: Qt.AlignHCenter
@@ -78,6 +81,7 @@ Item
                 Layout.preferredWidth: parent.width - 170
                 placeholderText: "Введите Вашу фамилию<font color=\"#D72F2F\"> *</font>"
             }
+
             ControlEdit
             {
                 Layout.alignment: Qt.AlignHCenter
@@ -86,6 +90,7 @@ Item
                 placeholderText: "Введите пароль<font color=\"#D72F2F\"> *</font>"
                 echoMode: TextInput.Password
             }
+
             ControlEdit
             {
                 Layout.alignment: Qt.AlignHCenter
@@ -95,16 +100,18 @@ Item
                 echoMode: TextInput.Password
 
             }
+
             ControlButton
             {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: 50
                 Layout.preferredWidth: parent.width - 170
                 text:"Продолжить"
-                icon.source: "qrc:/res/button.png"
+                icon.source: "qrc:/mouse_click.svg"
                 icon.height: 15
                 icon.width: 15
             }
+
             ControlTextButton
             {
                 id: createBtn

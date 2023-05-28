@@ -10,15 +10,18 @@ Item
     property alias projectName: projectName.text
     property alias description: desc.text
 
+    height: columnLayout.implicitHeight + 2 * columnLayout.anchors.margins
+
     Rectangle
     {
         id: ticketRect
-        width: parent.width
-        height: parent.height
-        layer.enabled: true
-        radius: 15
-        clip: true
         color: "#F9F9F9"
+
+        radius: 15
+        anchors.fill: parent
+        clip: true
+
+        layer.enabled: true
         layer.effect: DropShadow
         {
             color: "#e3e3e3"
@@ -29,82 +32,92 @@ Item
             horizontalOffset: 4
             verticalOffset: 4
         }
+
         ColumnLayout
         {
+            id: columnLayout
             anchors.fill: parent
-            anchors.leftMargin: 20
-            anchors.rightMargin: 20
+            anchors.margins: 10
+            clip: true
+
             RowLayout
             {
-                Layout.alignment: Qt.AlignTop
                 Layout.fillWidth: true
+
+                spacing: 10
+
                 Text
                 {
                     id: header
                     text: "Задача #1"
-                    font.pixelSize: 20
-                    font.family: "Segoe UI"
                     color: "#696969"
-                    font.bold: true
+                    font.pixelSize: 20
+                    font.italic: true
+                    font.family: "Segoe UI"
                     elide: Qt.ElideRight
-                    Layout.maximumWidth: parent.width * 0.4
-                }
-                ControlTimer
-                {
-                    Layout.leftMargin: 15
-                    Layout.fillHeight: true
-                }
-                Item
-                {
+
                     Layout.fillWidth: true
-                    Layout.minimumWidth: 100
+                    Layout.preferredWidth: 5
                 }
+
                 Text
                 {
                     id: projectName
                     text: "Проект #1"
-                    font.pixelSize: 16
-                    font.family: "Segoe UI"
                     color: "#696969"
+                    font.pixelSize: 16
                     font.bold: true
-                    Layout.rightMargin: 15
+                    font.family: "Segoe UI"
                     elide: Text.ElideRight
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: 3
+                    horizontalAlignment: Qt.AlignRight
+                    verticalAlignment: Qt.AlignBottom
                 }
+
                 ControlMoreButton
                 {
                     Layout.preferredWidth: 24
                     Layout.preferredHeight: 24
                 }
             }
+
             RowLayout
             {
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignTop
-                ControlTag
+
+                RowLayout
                 {
-                    height: 25
-                    fontSize: 16
-                    text: "#high"
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    ControlTag { fontSize: 14; text: "#high" }
+
+                    ControlTag { fontSize: 14; text: "#large" }
                 }
-                ControlTag
+
+
+                ControlTimer
                 {
-                    height: 25
-                    fontSize: 16
-                    text: "#large"
+                    Layout.fillHeight: true
                 }
             }
+
             Text
             {
-                Layout.alignment: Qt.AlignTop
                 id: desc
+
                 text: qsTr("Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit. Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit.")
+                color: "#696969"
                 font.pixelSize: 16
                 font.family: "Segoe UI"
-                color: "#696969"
-                Layout.fillWidth: true
-                Layout.preferredHeight: 70
                 wrapMode: TextEdit.WordWrap
                 elide: Text.ElideRight
+
+                Layout.fillWidth: true
+                Layout.preferredHeight: 70
             }
         }
     }

@@ -31,6 +31,7 @@ Item
             horizontalOffset: 4
             verticalOffset: 4
         }
+
         ColumnLayout
         {
             anchors.fill: parent
@@ -51,30 +52,33 @@ Item
                     font.bold: true
                     elide: Qt.ElideRight
                 }
+
                 ControlEditButton
                 {
                     Layout.preferredWidth: 15
                     Layout.preferredHeight: 15
                 }
+
                 ControlChatButton
                 {
                     Layout.leftMargin: 20
                     font.pixelSize: 16
-                    onClicked: {
-                        root.onChatBtnClicked();
-                    }
+                    onClicked: root.onChatBtnClicked();
                 }
+
                 Item
                 {
                     Layout.fillWidth: true
                     Layout.minimumWidth: 100
                 }
+
                 ControlMoreButton
                 {
                     Layout.preferredWidth: 24
                     Layout.preferredHeight: 24
                 }
             }
+
             RowLayout
             {
                 ControlRegularText
@@ -82,17 +86,20 @@ Item
                     text: qsTr("Текущий прогресс")
                     font.bold: true
                 }
+
                 Item
                 {
                     Layout.fillWidth: true
                     Layout.minimumWidth: 10
                 }
+
                 ControlRegularText
                 {
                     text: qsTr("Задач завершено: " + numOfDoneTickets + "/" + numOfTickets)
                     font.bold: true
                 }
             }
+
             Rectangle
             {
                 Layout.fillWidth: true
@@ -100,6 +107,7 @@ Item
                 radius: 15
                 border.color: "#EDEDED"
                 border.width: 2
+
                 Rectangle
                 {
                     height: parent.height - parent.border.width * 2

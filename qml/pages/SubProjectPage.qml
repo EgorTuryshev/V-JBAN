@@ -39,21 +39,28 @@ Item
 
                 delegate: ControlMenuButton
                 {
+                    id: controlMenu
+
                     text: name
                     font.pixelSize: 24
                     font.bold: true
+
                     ButtonGroup.group: subMenuBtnGroup
                     onClicked: router.currentIndex = index;
                 }
             }
         }
+
         Loader
         {
             id: router
             property int currentIndex: 0
+            sourceComponent: PartProjectPageTasks { }
+
             Layout.fillWidth: true
             Layout.fillHeight: true
-            sourceComponent: PartProjectPageTasks { }
+            clip: true
+
             onCurrentIndexChanged:
             {
                 if (currentIndex == 0)

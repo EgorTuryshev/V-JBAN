@@ -1,15 +1,15 @@
 <RCC>
     <qresource prefix="/">
-        <file>res/logo.png</file>
-        <file>res/avatar.png</file>
-        <file>res/edit.png</file>
-        <file>res/plus_big.png</file>
-        <file>res/more.png</file>
-        <file>res/button.png</file>
-        <file>res/search.png</file>
-        <file>res/chat.svg</file>
-        <file>qml/controls/ControlChatButton.qml</file>
-        <file>qml/pages/PartProjectPageChat.qml</file>
-        <file>qml/controls/ModelControlMessage.qml</file>
+        <file alias="chat.svg">assets/images/chat.svg</file>
+        <file alias="edit.svg">assets/images/edit.svg</file>
+        <file alias="logo.svg">assets/images/logo.png</file>
+        <file alias="more.svg">assets/images/more.svg</file>
+        <file alias="mouse_click.svg">assets/images/mouse_click.svg</file>
+        <file alias="plus_big.svg">assets/images/plus_big.svg</file>
+        <file alias="search.svg">assets/images/search.svg</file>
+        <file alias="avatar.png">assets/images/avatar.png</file>
+        <file alias="down_arrow.svg">assets/images/down_arrow.svg</file>
+        <file alias="delete.svg">assets/images/close.svg</file>
+        <file alias="simple_edit.svg">assets/images/simple_edit.svg</file>
     </qresource>
 </RCC>

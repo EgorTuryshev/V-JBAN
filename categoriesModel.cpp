@@ -75,8 +75,7 @@ int CategoriesModel::getCategoryIndexById(int id) const
 
 void CategoriesModel::moveTicketToLastRegisteredPos()
 {
-    if(m_toIndex == -1)
-    {
+    if (m_toIndex == -1) {
         m_toIndex = m_categories.at(m_fromCategory).getTickets()->rowCount();
     }
     moveTicket(m_fromCategory, m_fromIndex, m_toCategory, m_toIndex - 1);
@@ -84,14 +83,10 @@ void CategoriesModel::moveTicketToLastRegisteredPos()
 
 void CategoriesModel::registerPos(int fromCategory, int fromIndex, int toCategory, int toIndex)
 {
-    m_fromIndex = fromIndex;
+    m_fromIndex    = fromIndex;
     m_fromCategory = fromCategory;
-    m_toIndex = toIndex;
-    m_toCategory = toCategory;
-    qDebug() << m_fromIndex;
-    qDebug() << m_fromCategory ;
-    qDebug() << m_toIndex;
-    qDebug() << m_toCategory;
+    m_toIndex      = toIndex;
+    m_toCategory   = toCategory;
 }
 
 void CategoriesModel::displayNames()
@@ -182,17 +177,15 @@ void CategoriesModel::updateFromServer()
 void CategoriesModel::moveTicket(int fromCategory, int fromIndex, int toCategory, int toIndex)
 {
     fromCategory = getCategoryIndexById(fromCategory);
-    toCategory = getCategoryIndexById(toCategory);
+    toCategory   = getCategoryIndexById(toCategory);
     Ticket* tick = getTicketByIndex(fromCategory, fromIndex);
-    if(fromCategory == toCategory)
-    {
+    if (fromCategory == toCategory) {
         m_categories.at(toCategory).getTickets()->moveTicketInternally(fromIndex, toIndex);
-    }
-    else
-    {
+    } else {
         m_categories.at(toCategory).getTickets()->insertTicketInto(tick, toIndex);
         removeTicketByIndex(fromCategory, fromIndex);
     }
+
     QModelIndex fromModelIndex = createIndex(fromCategory, 0);
     QModelIndex toModelIndex   = createIndex(toCategory, 0);
     /*emit dataChanged(fromModelIndex, fromModelIndex);
@@ -200,7 +193,6 @@ void CategoriesModel::moveTicket(int fromCategory, int fromIndex, int toCategory
     emit modelChanged();*/
     beginResetModel();
     endResetModel();
-
 }
 
 QList<Category> CategoriesModel::getCategories()

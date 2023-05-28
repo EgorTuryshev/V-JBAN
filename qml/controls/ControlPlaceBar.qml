@@ -12,21 +12,37 @@ Rectangle
     property int categoryId
 
     radius: 10
-    opacity: 1
-    height: 10
-    color: "blue"
+    height: 4
+    color: "#2563eb"
+
+    opacity: 0
+
+    Behavior on opacity { NumberAnimation { duration: 200 } }
+
     DropArea
     {
         id: dropArea
         anchors.fill: parent
 
         onEntered: (drag) => {
-          fromIndex = drag.source.parent.index;
-          toIndex = index;
-          fromColumn = drag.source.parent.categoryId;
-          toColumn = categoryId;
-          // регистрация индекса
-          categoriesModel.registerPos(fromColumn, fromIndex,toColumn, toIndex);
+            fromIndex = drag.source.parent.index;
+            toIndex = index;
+            fromColumn = drag.source.parent.categoryId;
+            toColumn = categoryId;
+
+            // Делаем видимой цель перетаскивания
+            root.opacity = 1;
+
+            console.log("<--------------- DRAG EVENT START --------------->");
+            console.log("FromColumn: ", fromIndex, " -> FromIndex: ", fromIndex);
+            console.log("ToColumn:   ", toColumn, " -> ToIndex:   ", toIndex);
+
+            // Регистрация индекса
+            categoriesModel.registerPos(fromColumn, fromIndex,toColumn, toIndex);
+        }
+
+        onExited: () => {
+            root.opacity = 0;
         }
     }
 }

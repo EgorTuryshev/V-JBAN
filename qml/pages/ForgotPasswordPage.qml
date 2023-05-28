@@ -71,7 +71,7 @@ Item
                 Layout.preferredHeight: 50
                 Layout.preferredWidth: parent.width - 170
                 text:"Продолжить"
-                icon.source: "qrc:/res/button.png"
+                icon.source: "qrc:/mouse_click.svg"
                 icon.height: 15
                 icon.width: 15
             }

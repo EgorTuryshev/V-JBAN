@@ -18,7 +18,7 @@ Item
         Image
         {
             id: image
-            source: "qrc:/res/avatar.png"
+            source: "qrc:/avatar.png"
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
             sourceSize.width: imgRect.width

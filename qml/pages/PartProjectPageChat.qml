@@ -7,10 +7,15 @@ Item {
     ListView
     {
         anchors.fill: parent
-        spacing: 30
+        spacing: 10
 
         model: ListModel
         {
+            ListElement { }
+            ListElement { }
+            ListElement { }
+            ListElement { }
+            ListElement { }
             ListElement { }
         }
 

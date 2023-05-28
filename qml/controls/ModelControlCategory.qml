@@ -29,6 +29,7 @@ Item
             horizontalOffset: 4
             verticalOffset: 4
         }
+
         ColumnLayout
         {
             id: column
@@ -59,6 +60,7 @@ Item
                 Layout.rightMargin: 10
                 bgColor: "#EDEDED"
             }
+
             ListView
             {
                 id: ticketList
@@ -67,10 +69,10 @@ Item
                 highlightMoveVelocity: -1
                 highlightMoveDuration: 1000
                 clip: true
-                spacing: 10
+                // 2 - def. spacing + 4 - dropshadow of Ticket
+                spacing: 2 + 4
 
-                delegate: Item
-                {
+                delegate: Item {
                     id: delegateItem
                     width: ticketList.width
                     height: childrenRect.height
@@ -78,12 +80,10 @@ Item
                     ControlPlaceBar
                     {
                         id: ticketRectangle
-                        color: "blue"
                         index: model.index
                         categoryId: category.categoryId
                         width: parent.width - 20
                         anchors.horizontalCenter: parent.horizontalCenter
-                        //opacity: index > 0 ? 0 : 1
                     }
 
                     ModelControlTicket
@@ -92,36 +92,29 @@ Item
                         header: name
                         index: model.index
                         categoryId: category.categoryId
+
                         width: parent.width - 20
                         anchors.top: ticketRectangle.bottom
-                        anchors.topMargin: 10
+                        anchors.topMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
-
-                    Loader
-                    {
-                        sourceComponent: ticketDelegate
-                    }
                 }
-                footer:
-                    Item {
-                        width: ticketList.width
-                        height: ticketRectangleBottom.height + 10
-                        ControlPlaceBar
-                        {
-                            id: ticketRectangleBottom
-                            color: "blue"
-                            index: -1
-                            categoryId: category.categoryId
-                            width: parent.width - 20
-                            anchors
-                            {
-                                top: parent.top
-                                topMargin: 10
-                                horizontalCenter: parent.horizontalCenter
-                            }
-                            //opacity: index > 0 ? 0 : 1
-                        }
+
+                footer: Item {
+                    width: ticketList.width
+                    height: ticketRectangleBottom.height + 10
+
+                    ControlPlaceBar
+                    {
+                        id: ticketRectangleBottom
+                        index: -1
+                        categoryId: category.categoryId
+                        width: parent.width - 20
+
+                        anchors.top: parent.top
+                        anchors.topMargin: ticketList.spacing
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
                 }
             }
         }

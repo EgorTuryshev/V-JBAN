@@ -24,14 +24,16 @@ Item
             horizontalOffset: 4
             verticalOffset: 4
         }
+
         Image
         {
             id: plus
             anchors.centerIn: parent
             width: plusSize
             height: plusSize
-            source: "qrc:/res/plus_big.png"
+            source: "qrc:/plus_big.svg"
         }
+
         MouseArea
         {
             anchors.fill: parent

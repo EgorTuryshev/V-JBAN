@@ -60,7 +60,7 @@ Item
                 Layout.alignment: Qt.AlignHCenter
                 Image
                 {
-                    source: 'qrc:/res/logo.png'
+                    source: 'qrc:/logo.svg'
                 }
                 Text
                 {
@@ -125,7 +125,7 @@ Item
                 Layout.preferredHeight: 50
                 Layout.preferredWidth: parent.width - 170
                 text:"Продолжить"
-                icon.source: "qrc:/res/button.png"
+                icon.source: "qrc:/mouse_click.svg"
                 icon.height: 15
                 icon.width: 15
                 onClicked:
@@ -141,7 +141,7 @@ Item
                 Layout.preferredHeight: 50
                 Layout.preferredWidth: parent.width - 170
                 text:"Я дебил"
-                icon.source: "qrc:/res/button.png"
+                icon.source: "qrc:/mouse_click.svg"
                 icon.height: 15
                 icon.width: 15
                 Material.background: "#D72F2F"

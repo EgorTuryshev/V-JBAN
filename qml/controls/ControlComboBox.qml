@@ -10,14 +10,10 @@ ComboBox {
     Material.foreground: "#7a7a7a"
     Material.background: "#7a7a7a"
 
-//    textRole: "text"
-
     delegate: ItemDelegate {
         width: root.width - 10
 
         property variant modelData: model
-
-        Component.onCompleted: console.log(modelData.text)
 
         contentItem: Text {
             text: modelData.name
@@ -49,15 +45,17 @@ ComboBox {
         }
     }
 
-    background: Rectangle {
-        id: rootBG
-        implicitWidth: 140
-        implicitHeight: 50
-        color: "transparent"
-        radius: 5
+    indicator: Image {
+        id: indicatorIcon
+        x: root.width - width - 10
+        y: (root.availableHeight - height) / 2
 
-        border.color: "#D4D4D8"
-        border.width: 2
+        source: 'qrc:/down_arrow.svg'
+        sourceSize: Qt.size(12, 12)
+
+        Behavior on rotation {
+            NumberAnimation { duration: 75 }
+        }
     }
 
     contentItem: Item {
@@ -77,6 +75,15 @@ ComboBox {
         }
     }
 
+    background: Rectangle {
+        id: rootBG
+        color: "transparent"
+        anchors.fill: parent
+        border.color: "#D4D4D8"
+        border.width: 2
+        radius: 8
+    }
+
     popup: Popup {
         y: root.height - 1
         width: root.width
@@ -93,7 +100,7 @@ ComboBox {
         }
 
         background: Rectangle {
-            color: root.inActiveColor
+            color: "#e4e4e4"
             radius: 5
             clip: true
 
@@ -108,5 +115,7 @@ ComboBox {
                 verticalOffset: 4
             }
         }
+
+        onVisibleChanged: visible ? indicatorIcon.rotation = 180 : indicatorIcon.rotation = 0
     }
 }

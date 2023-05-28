@@ -17,10 +17,13 @@ qt_add_resources(IMAGE_RESOURCES images.qrc)
 file(GLOB CPP_SOURCES *.cpp)
 file(GLOB HPP_SOURCES *.h)
 
+set (WIN32_ICON ${CMAKE_CURRENT_SOURCE_DIR}/assets/V-JBAN.rc)
+
 qt_add_executable(${EXECUTABLE_NAME}
     ${HPP_SOURCES}
     ${CPP_SOURCES}
     ${IMAGE_RESOURCES}
+    ${WIN32_ICON}
 )
 
 file(GLOB QML_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} qml/*.qml qml/pages/*.qml qml/controls/*.qml)

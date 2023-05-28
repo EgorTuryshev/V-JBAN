@@ -59,7 +59,7 @@ Item
             Layout.fillHeight: true
 
             clip: true
-            spacing: 30
+            spacing: 15
 
             model: ListModel
             {
@@ -75,7 +75,6 @@ Item
                 header: name
                 projectName: prName
                 width: parent.width - 10
-                height: 150
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 

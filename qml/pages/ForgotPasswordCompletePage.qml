@@ -51,7 +51,7 @@ Item
                 Layout.topMargin: -100
                 Layout.preferredHeight: 50
                 Layout.preferredWidth: parent.width - 170
-                icon.source: "qrc:/res/button.png"
+                icon.source: "qrc:/mouse_click.svg"
                 icon.height: 15
                 icon.width: 15
                 text:"Перейти на страницу входа"

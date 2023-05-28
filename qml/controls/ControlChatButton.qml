@@ -16,7 +16,7 @@ ControlTextButton
     indicator: Item
     {}
 
-    icon.source: "qrc:/res/chat.svg"
+    icon.source: "qrc:/chat.svg"
     icon.height: 15
     icon.width: 15
 

@@ -79,8 +79,7 @@ void CategoriesModel::moveTicketToLastRegisteredPos()
     int toCategory   = getCategoryIndexById(m_toCategory);
     qDebug() << "FROMCAT" << fromCategory;
     qDebug() << "TOCAT" << toCategory;
-    if(fromCategory != -1 && toCategory != -1)
-    {
+    if (fromCategory != -1 && toCategory != -1) {
         if (m_toIndex == -1) {
             m_toIndex = m_categories.at(toCategory).getTickets()->rowCount();
             qDebug() << "MOVING TO LAST POSITION ATTEMPT BY INDEX: " << m_toIndex;

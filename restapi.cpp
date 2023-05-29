@@ -21,6 +21,7 @@ QNetworkRequest RestAPI::createRequest(const QString& url)
     }
     return request;
 }
+
 void RestAPI::sendLoginRequest(const QString& email, const QString& password)
 {
     QNetworkRequest request = createRequest("https://sgu-dev.ru/api/login");
@@ -48,6 +49,7 @@ void RestAPI::sendLoginRequest(const QString& email, const QString& password)
         }
         reply->deleteLater(); });
 }
+
 void RestAPI::sendRefreshTokenRequest()
 {
     QNetworkRequest request = createRequest("https://sgu-dev.ru/api/refresh-token");
@@ -61,16 +63,17 @@ void RestAPI::sendRefreshTokenRequest()
     QNetworkReply* reply = networkManager->post(request, data);
     connect(reply, &QNetworkReply::finished, [=]()
         {
-        QString strReply = reply->readAll();
-        QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
-        QJsonObject jsonObject = jsonResponse.object();
-        if(reply->error() == QNetworkReply::NoError) {
-            emit loginResponseReceived(jsonObject["accessToken"].toString(), jsonObject["refreshToken"].toString());
-        }
-        else {
-            emit errorReceived(jsonObject["error_msg"].toString());
-        }
-        reply->deleteLater(); });
+            if(reply->error() == QNetworkReply::NoError) {
+                QString strReply = reply->readAll();
+                QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+                QJsonObject jsonObject = jsonResponse.object();
+
+                emit loginResponseReceived(jsonObject["accessToken"].toString(), jsonObject["refreshToken"].toString());
+            }
+            else {
+                emit forceLoginPage(); // создайте этот сигнал
+            }
+            reply->deleteLater(); });
 }
 
 void RestAPI::getProjects()
@@ -100,6 +103,7 @@ void RestAPI::getProjects()
             QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
             QJsonObject jsonObject = jsonResponse.object();
             emit errorReceived(jsonObject["error_msg"].toString());
+            sendRefreshTokenRequest();
         }
         reply->deleteLater(); });
 }

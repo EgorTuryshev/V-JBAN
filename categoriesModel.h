@@ -39,7 +39,7 @@ public:
 
     Q_INVOKABLE int getCategoryIndexByName(QString name) const;
     Q_INVOKABLE int getCategoryIndexById(int id) const;
-    Q_INVOKABLE int indexOfCategory(Category* category) const {return m_categories.indexOf(*category);}
+    Q_INVOKABLE int indexOfCategory(Category* category) const { return m_categories.indexOf(*category); }
     /* ------------------------ Tickets manipulation ------------------------ */
     Q_INVOKABLE void moveTicketToLastRegisteredPos();
     Q_INVOKABLE void registerPos(int fromCategory, int fromIndex, int toCategory, int toIndex);

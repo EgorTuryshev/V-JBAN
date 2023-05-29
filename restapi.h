@@ -23,6 +23,7 @@ public:
 signals:
     void loginResponseReceived(QString accessToken, QString refreshToken);
     void projectsReceived(QList<Project*> projects);
+    void forceLoginPage();
     void errorReceived(QString error);
     void tokensSet();
 

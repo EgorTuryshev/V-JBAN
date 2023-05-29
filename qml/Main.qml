@@ -2,8 +2,6 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Layouts 1.15
 
-import './pages'
-
 Window
 {
     width: 1200
@@ -13,9 +11,24 @@ Window
     visible: true
     title: qsTr("V-JBAN")
 
+    Component.onCompleted: {
+        restAPI.getProjects()
+    }
+
+    Connections
+    {
+        target: restAPI
+        function onProjectsReceived() {
+            loader.setSource("./pages/MainPage.qml");
+        }
+        function onForceLoginPage() {
+            loader.setSource("./pages/LoginPage.qml");
+        }
+    }
+
     Loader {
         id: loader
         anchors.fill: parent
-        sourceComponent: LoginPage { }
+//        sourceComponent: LoginPage { }
     }
 }

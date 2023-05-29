@@ -24,8 +24,7 @@ Item
     {
         target: restAPI
         function onTokensSet(accessToken, refreshToken) {
-            if (accessToken !== "" && refreshToken !== "")
-            {
+            if (accessToken !== "" && refreshToken !== "") {
                 restAPI.getProjects();
                 root.parent.setSource("MainPage.qml");
             }

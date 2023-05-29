@@ -1,8 +1,8 @@
-
 #ifndef USER_H
 #define USER_H
 
 #include <QObject>
+#include <QSettings>
 #include <QString>
 
 class User : public QObject
@@ -27,6 +27,12 @@ signals:
 private:
     QString m_accessToken;
     QString m_refreshToken;
+    QSettings settings { "SguDev", "V-JBAN" };
+
+    QString cipherKey = "gachi-clowns";
+
+    QString encrypt(const QString& token);
+    QString decrypt(const QString& cipherText);
 };
 
 #endif // USER_H

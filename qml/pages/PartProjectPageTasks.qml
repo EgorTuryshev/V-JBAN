@@ -15,37 +15,41 @@ Item
         id: rowLayout
         anchors.fill: parent
         spacing: 20
-
-        ListView
+        ScrollView
         {
-            id: listView
             Layout.fillHeight: true
-            Layout.fillWidth: true
-            orientation: ListView.Horizontal
-            spacing: 20
+            Layout.preferredWidth: parent.width - 50
 
-            model: CategoriesModel {
-                id: categoriesModel
-                Component.onCompleted: categoriesModel.populate();
-            }
+            ListView
+            {
+                id: listView
+                anchors.fill: parent
+                anchors.bottomMargin: 30
+                orientation: ListView.Horizontal
+                spacing: 20
 
-            delegate: ModelControlCategory {
-                tickets: model.tickets
-                title: name
-                categoryId: id
-                width: 400
-                height: parent.height
-                anchors.topMargin: 20
+                model: CategoriesModel {
+                    id: categoriesModel
+                    Component.onCompleted: categoriesModel.populate();
+                }
+
+                delegate: ModelControlCategory {
+                    tickets: model.tickets
+                    title: name
+                    categoryId: id
+                    width: 400
+                    height: parent.height
+                    anchors.topMargin: 20
+                }
             }
         }
-
         ControlPlusPanel
         {
             id: addCategoryButton
-            Layout.fillHeight: true
-            Layout.preferredWidth: 100
-            Layout.topMargin: 20
-            plusSize: 20
+            height: 50
+            width: 50
+            Layout.alignment: Qt.AlignTop | Qt.AlignLeft;
+            plusSize: 25
             bgColor: "#F9F9F9"
             visible: listView.contentX + listView.width >= listView.contentWidth - 10
         }

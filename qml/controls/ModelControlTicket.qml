@@ -111,9 +111,9 @@ Item
 
                     ControlMoreButton
                     {
-                        Layout.preferredWidth: 15
-                        Layout.preferredHeight: 15
-                        Layout.rightMargin: 10
+                        Layout.preferredWidth: 20
+                        Layout.preferredHeight: 20
+                        Layout.rightMargin: 5
                     }
                 }
 

@@ -14,13 +14,21 @@ Item
         MenuItem {
             text: "Подробнее"
             icon.source: "qrc:/simple_edit.svg"
-            onTriggered: console.log("Подробнее selected")
+            Material.foreground: "#3464CD"
+            font.pixelSize: 14
+            font.weight: Font.Bold
+            height: 45
+            padding: 5
         }
 
         MenuItem {
             text: "Удалить"
             icon.source: "qrc:/delete.svg"
-            onTriggered: console.log(font.pixelSize);
+            Material.foreground: "#D72E2E"
+            font.pixelSize: 14
+            font.weight: Font.Bold
+            height: 45
+            padding: 5
         }
 
         width: 150
@@ -65,6 +73,7 @@ Item
         {
             id: mouseArea
             anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
             onClicked: root.onClicked();
         }
     }

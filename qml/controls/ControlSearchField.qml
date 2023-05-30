@@ -54,6 +54,11 @@ Item
             source: "qrc:/search.svg"
             anchors.rightMargin: 15
             anchors.verticalCenter: parent.verticalCenter
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+            }
         }
     }
 }

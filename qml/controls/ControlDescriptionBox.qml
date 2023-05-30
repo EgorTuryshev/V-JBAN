@@ -7,6 +7,8 @@ ColumnLayout
 {
     id: root
 
+    property int descrHeight: 200
+
     property alias title: title.text
     property alias titleFontPixelSize: title.font.pixelSize
     property alias titleFontBold: title.font.bold
@@ -16,7 +18,7 @@ ColumnLayout
     property alias descriptionFontBold: description.font.bold
 
     Material.accent: '#2563EB'
-    Material.foreground: '#71717A'
+    Material.foreground: '#696969'
 
     RowLayout
     {
@@ -38,7 +40,8 @@ ColumnLayout
             MouseArea
             {
                 anchors.fill: parent
-                onClicked: description.readOnly = false;
+                cursorShape: Qt.PointingHandCursor
+                onClicked: description.readOnly = false
             }
         }
     }
@@ -49,7 +52,7 @@ ColumnLayout
 
         radius: 10
         Layout.fillWidth: true
-        Layout.preferredHeight: 200
+        Layout.preferredHeight: root.descrHeight
         layer.enabled: true
 
         layer.effect: DropShadow
@@ -62,26 +65,41 @@ ColumnLayout
             verticalOffset: 0
         }
 
-        TextArea
+        ScrollView
         {
-            id: description
-
             anchors.fill: parent
-            anchors.margins: 10
-            anchors.topMargin: 25
-            anchors.bottomMargin: 15
+            anchors.topMargin: 10
+            anchors.bottomMargin: 10
+            anchors.leftMargin: 10
+            anchors.rightMargin: 10
 
-            readOnly: true
-            wrapMode: TextEdit.Wrap
-            textFormat: TextEdit.RichText
+            TextArea
+            {
+                id: description
+                anchors.fill: parent
+                anchors.topMargin: 10
+                anchors.bottomMargin: 10
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
 
-            background: Item { }
+                Material.accent: '#D4D4D8'
+                Material.foreground: '#696969'
 
-            onEditingFinished:  readOnly = true;
+                leftPadding: 0
+                rightPadding: 0
 
-            onReadOnlyChanged: {
-                if(readOnly === false)
-                    forceActiveFocus();
+                readOnly: true
+                wrapMode: TextEdit.Wrap
+                textFormat: TextEdit.RichText
+
+                background: Item { }
+
+                onEditingFinished:  readOnly = true;
+
+                onReadOnlyChanged: {
+                    if(readOnly === false)
+                        forceActiveFocus();
+                }
             }
         }
     }

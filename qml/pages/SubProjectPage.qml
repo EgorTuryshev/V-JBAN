@@ -59,7 +59,8 @@ Item
 
             Layout.fillWidth: true
             Layout.fillHeight: true
-            clip: true
+            Layout.topMargin: 50;
+//            clip: true
 
             onCurrentIndexChanged:
             {

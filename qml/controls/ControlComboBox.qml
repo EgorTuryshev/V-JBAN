@@ -31,7 +31,7 @@ ComboBox {
             radius: 5
 
             Rectangle {
-                color: "#334455"
+                color: "#3464CD"
                 visible: root.highlightedIndex === index ? true : false
 
                 width: 3
@@ -52,6 +52,14 @@ ComboBox {
 
         source: 'qrc:/down_arrow.svg'
         sourceSize: Qt.size(12, 12)
+
+        ColorOverlay
+        {
+            id: overlay
+            anchors.fill: parent
+            source: indicatorIcon
+            color: "#3464CD"
+        }
 
         Behavior on rotation {
             NumberAnimation { duration: 75 }
@@ -100,7 +108,7 @@ ComboBox {
         }
 
         background: Rectangle {
-            color: "#e4e4e4"
+            color: "#F9F9F9"
             radius: 5
             clip: true
 
@@ -116,6 +124,9 @@ ComboBox {
             }
         }
 
-        onVisibleChanged: visible ? indicatorIcon.rotation = 180 : indicatorIcon.rotation = 0
+        onVisibleChanged: {
+            visible ? indicatorIcon.rotation = 180 : indicatorIcon.rotation = 0;
+            visible ? overlay.color = "#D4D4D8": overlay.color = "#3464CD";
+        }
     }
 }

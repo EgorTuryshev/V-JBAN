@@ -11,5 +11,7 @@
         <file alias="down_arrow.svg">assets/images/down_arrow.svg</file>
         <file alias="delete.svg">assets/images/close.svg</file>
         <file alias="simple_edit.svg">assets/images/simple_edit.svg</file>
+        <file>qml/controls/ModelControlProjectMember.qml</file>
+        <file>qml/controls/ModelControlProjectRole.qml</file>
     </qresource>
 </RCC>

@@ -42,21 +42,14 @@ Item
             {
                 Layout.alignment: Qt.AlignTop
                 Layout.fillWidth: true
-                Text
-                {
+                ControlTextArea {
                     id: header
                     text: root.titleText
-                    font.pixelSize: 20
-                    font.family: "Segoe UI"
-                    color: "#696969"
-                    font.bold: true
-                    elide: Qt.ElideRight
-                }
+                    fontBold: true
+                    fontPixelSize: 20
 
-                ControlEditButton
-                {
-                    Layout.preferredWidth: 15
-                    Layout.preferredHeight: 15
+                    editBtnSize: 18
+                    textToBtnDist: 5
                 }
 
                 ControlChatButton

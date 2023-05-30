@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 Item
 {
@@ -26,4 +27,18 @@ Item
             smooth: true
         }
     }
+
+//    ToolTip {
+//        contentItem: ControlRegularText {
+//            text: "Иванов Иван"
+//            font.pixelSize: 14
+//        }
+
+//        background: Rectangle {
+//            radius: 5
+//            color: "#E4E4E4"
+//            border.color: "#696969"
+//            border.width: 1
+//        }
+//    }
 }

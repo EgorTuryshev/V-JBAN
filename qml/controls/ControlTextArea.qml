@@ -8,22 +8,27 @@ RowLayout
     property alias text: textArea.text
     property alias fontPixelSize: textArea.font.pixelSize
     property alias fontBold: textArea.font.bold
+    property alias fontWeight: textArea.font.weight
+    property int editBtnSize: 24
+    property int textToBtnDist: 10
 
     TextArea
     {
         id: textArea
-        Layout.preferredWidth: textMetrics.width + 32
+        Layout.preferredWidth: textMetrics.width + textToBtnDist
         readOnly: true
         text: "Nothing interesting here"
         font.pixelSize: 24
         font.bold: true
-        Material.accent: '#2563EB'
-        Material.foreground: '#71717A'
+        Material.accent: '#D4D4D8'
+        Material.foreground: '#696969'
         wrapMode: TextEdit.NoWrap
+        leftPadding: 0;
+        rightPadding: 0;
 
         background: Item
         {
-            width: textMetrics.width + 32
+            width: textMetrics.width + textToBtnDist
             implicitHeight: textMetrics.height + textArea.font.pixelSize
         }
 
@@ -51,10 +56,13 @@ RowLayout
 
     Image
     {
+        Layout.preferredWidth: editBtnSize
+        Layout.preferredHeight: editBtnSize
         source: "qrc:/edit.svg"
         MouseArea
         {
             anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
             onClicked: textArea.readOnly = false;
         }
     }
@@ -66,5 +74,6 @@ RowLayout
         font.family: textArea.font.family
         font.bold: textArea.font.bold
         font.pixelSize: textArea.font.pixelSize
+        font.weight:textArea.font.weight
     }
 }
